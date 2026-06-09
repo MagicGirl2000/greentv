@@ -1,0 +1,1478 @@
+[
+{
+"id": "uk0",
+"name": "英国 · Aaj Tak (1080p)",
+"country": "英国",
+"stream": "http://103.213.31.109:90/AajtakHD/playlist.m3u8"
+},
+{
+"id": "uk1",
+"name": "英国 · Aathavan TV (720p) [Not 24/7]",
+"country": "英国",
+"stream": "http://45.77.66.224:1935/athavantv/live/playlist.m3u8"
+},
+{
+"id": "uk2",
+"name": "英国 · Adventure Earth (1080p)",
+"country": "英国",
+"stream": "https://a57e9c69976649b582a8d7604c00e69a.mediatailor.us-east-1.amazonaws.com/v1/master/44f73ba4d03e9607dcd9bebdcb8494d86964f1d8/RlaxxTV-eu_AdventureEarth/playlist.m3u8"
+},
+{
+"id": "uk3",
+"name": "英国 · Afrobeats (1080p)",
+"country": "英国",
+"stream": "https://stream.ecable.tv/afrobeats/index.m3u8"
+},
+{
+"id": "uk4",
+"name": "英国 · Ahlulbayt TV (1080p) [Not 24/7]",
+"country": "英国",
+"stream": "https://cdn5.iqsat.net/iqb02/35fae546b99b61a038d52353487e8190.sdp/playlist.m3u8"
+},
+{
+"id": "uk5",
+"name": "英国 · Akaal Channel (396p) [Geo-blocked]",
+"country": "英国",
+"stream": "https://cdn-globecast.akamaized.net/live/eds/akaal_tv/hls1_smart_akaal/akaal_tv.m3u8"
+},
+{
+"id": "uk6",
+"name": "英国 · AlbUK TV (1080p) [Not 24/7]",
+"country": "英国",
+"stream": "http://albuk.dyndns.tv:1935/albuk/albuk.stream/playlist.m3u8"
+},
+{
+"id": "uk7",
+"name": "英国 · Alhiwar TV (1080p) [Not 24/7]",
+"country": "英国",
+"stream": "https://mn-nl.mncdn.com/alhiwar_live/smil:alhiwar.smil/playlist.m3u8"
+},
+{
+"id": "us0",
+"name": "美国 · 3ABN Dare To Dream Network",
+"country": "美国",
+"stream": "https://3abn.bozztv.com/3abn2/d2d_live/smil:d2d_live.smil/playlist.m3u8"
+},
+{
+"id": "us1",
+"name": "美国 · 3ABN English",
+"country": "美国",
+"stream": "https://3abn.bozztv.com/3abn2/3abn_live/smil:3abn_live.smil/playlist.m3u8"
+},
+{
+"id": "us2",
+"name": "美国 · 3ABN French",
+"country": "美国",
+"stream": "https://3abn.bozztv.com/3abn2/Fre_live/smil:Fre_live.smil/playlist.m3u8"
+},
+{
+"id": "us3",
+"name": "美国 · 3ABN Kids Network",
+"country": "美国",
+"stream": "https://3abn.bozztv.com/3abn2/Kids_live/smil:Kids_live.smil/playlist.m3u8"
+},
+{
+"id": "us4",
+"name": "美国 · 3ABN Latino",
+"country": "美国",
+"stream": "https://3abn.bozztv.com/3abn2/Lat_live/smil:Lat_live.smil/playlist.m3u8"
+},
+{
+"id": "us5",
+"name": "美国 · 3ABN Praise Him Music Network",
+"country": "美国",
+"stream": "https://3abn.bozztv.com/3abn1/PraiseHim/smil:PraiseHim.smil/playlist.m3u8"
+},
+{
+"id": "us6",
+"name": "美国 · 3ABN Proclaim! Network",
+"country": "美国",
+"stream": "https://3abn.bozztv.com/3abn2/Pro_live/smil:Pro_live.smil/playlist.m3u8"
+},
+{
+"id": "us7",
+"name": "美国 · like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0\" group-title=\"Movies\",24 Hour Free Movies (720p)",
+"country": "美国",
+"stream": "https://d1b5mlajbmvkjv.cloudfront.net/v1/master/9d062541f2ff39b5c0f48b743c6411d25f62fc25/UDU-DistroTV/145.m3u8?ads.vf=7FhdsxqVxOi"
+},
+{
+"id": "fr0",
+"name": "法国 · 6ter (1080p) [Not 24/7]",
+"country": "法国",
+"stream": "https://viamotionhsi.netplus.ch/live/eds/6ter/browser-HLS8/6ter.m3u8"
+},
+{
+"id": "fr1",
+"name": "法国 · 20 Minutes TV (1080p)",
+"country": "法国",
+"stream": "https://live-20minutestv.digiteka.com/1961167769/index.m3u8"
+},
+{
+"id": "fr2",
+"name": "法国 · ADN TV+ (720p)",
+"country": "法国",
+"stream": "https://d3b73b34o7cvkq.cloudfront.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-gz2sgqzp076kf/adn.m3u8"
+},
+{
+"id": "fr3",
+"name": "法国 · Africa 24 (1080p)",
+"country": "法国",
+"stream": "https://africa24.vedge.infomaniak.com/livecast/ik:africa24/manifest.m3u8"
+},
+{
+"id": "fr4",
+"name": "法国 · Africa 24 English (1080p)",
+"country": "法国",
+"stream": "https://edge20.vedge.infomaniak.com/livecast/ik:africa24english/manifest.m3u8"
+},
+{
+"id": "fr5",
+"name": "法国 · Africa 24 Sport (1080p)",
+"country": "法国",
+"stream": "https://africa24.vedge.infomaniak.com/livecast/ik:africa24sport/manifest.m3u8"
+},
+{
+"id": "fr6",
+"name": "法国 · Alpe d’Huez TV (720p) [Not 24/7]",
+"country": "法国",
+"stream": "https://edge13.vedge.infomaniak.com/livecast/ik:adhtv/manifest.m3u8"
+},
+{
+"id": "fr7",
+"name": "法国 · Angers Tele (180p)",
+"country": "法国",
+"stream": "https://raw.githubusercontent.com/Sibprod/streams/main/ressources/dm/py/hls/angerstele.m3u8"
+},
+{
+"id": "de0",
+"name": "德国 · 1-2-3 TV (270p)",
+"country": "德国",
+"stream": "https://123tv-mx1.flex-cdn.net/index.m3u8"
+},
+{
+"id": "de1",
+"name": "德国 · 3sat (720p) [Geo-blocked]",
+"country": "德国",
+"stream": "https://zdf-hls-18.akamaized.net/hls/live/2016501/dach/high/master.m3u8"
+},
+{
+"id": "de2",
+"name": "德国 · 3sat HD (1080p) [Geo-Blocked]",
+"country": "德国",
+"stream": "https://viamotionhsi.netplus.ch/live/eds/3sathd/browser-HLS8/3sathd.m3u8"
+},
+{
+"id": "de3",
+"name": "德国 · Adventure Earth (1080p)",
+"country": "德国",
+"stream": "https://a57e9c69976649b582a8d7604c00e69a.mediatailor.us-east-1.amazonaws.com/v1/master/44f73ba4d03e9607dcd9bebdcb8494d86964f1d8/RlaxxTV-eu_AdventureEarth/playlist.m3u8"
+},
+{
+"id": "de4",
+"name": "德国 · Alex Berlin (1080p)",
+"country": "德国",
+"stream": "https://alex-stream.rosebud-media.de/bounce/alexlivetv50.smil/index.m3u8"
+},
+{
+"id": "de5",
+"name": "德国 · Allgäu TV (1080p)",
+"country": "德国",
+"stream": "https://stream01.welocal.stream/stream/fhd-allgaeutv_25679/ngrp:stream_all/playlist.m3u8"
+},
+{
+"id": "de6",
+"name": "德国 · Altenburg TV (1080p)",
+"country": "德国",
+"stream": "https://58de7a369a9c4.streamlock.net/abgtv/abgtv_1080p/playlist.m3u8"
+},
+{
+"id": "de7",
+"name": "德国 · ANIMAL KINGDOM (720p)",
+"country": "德国",
+"stream": "https://cdn6.goprimetime.info/feed/202306140918/LC18/index.m3u8"
+},
+{
+"id": "hu0",
+"name": "匈牙利 · 16tv Budapest (360p)",
+"country": "匈牙利",
+"stream": "https://cloudfront44.lexanetwork.com:1344/freerelay/16tv.sdp/playlist.m3u8"
+},
+{
+"id": "hu1",
+"name": "匈牙利 · Alföld TV (1080p)",
+"country": "匈牙利",
+"stream": "https://cloudfront41.lexanetwork.com:1344/relay01/livestream006.sdp/playlist.m3u8"
+},
+{
+"id": "hu2",
+"name": "匈牙利 · Apostol TV (576p)",
+"country": "匈牙利",
+"stream": "https://live.apostoltv.hu/live/playlist.m3u8"
+},
+{
+"id": "hu3",
+"name": "匈牙利 · ATV (576p)",
+"country": "匈牙利",
+"stream": "http://146.59.85.40:89/atv/index.m3u8"
+},
+{
+"id": "hu4",
+"name": "匈牙利 · ATV Spirit (576p)",
+"country": "匈牙利",
+"stream": "http://146.59.85.40:89/atvspirit/index.m3u8"
+},
+{
+"id": "hu5",
+"name": "匈牙利 · Bábolnai TV (360p)",
+"country": "匈牙利",
+"stream": "https://cloudfront44.lexanetwork.com:1344/freerelay/babolnatv.sdp/playlist.m3u8"
+},
+{
+"id": "hu6",
+"name": "匈牙利 · Bajai TV (720p)",
+"country": "匈牙利",
+"stream": "https://cloudfront41.lexanetwork.com:1344/relay01/livestream002.sdp/playlist.m3u8"
+},
+{
+"id": "hu7",
+"name": "匈牙利 · Balaton TV (432p)",
+"country": "匈牙利",
+"stream": "https://stream.iptvservice.eu/hls/balatontv.m3u8"
+},
+{
+"id": "at0",
+"name": "奥地利 · 3sat (720p) [Geo-blocked]",
+"country": "奥地利",
+"stream": "https://zdf-hls-18.akamaized.net/hls/live/2016501/dach/high/master.m3u8"
+},
+{
+"id": "at1",
+"name": "奥地利 · 3sat HD (1080p) [Geo-Blocked]",
+"country": "奥地利",
+"stream": "https://viamotionhsi.netplus.ch/live/eds/3sathd/browser-HLS8/3sathd.m3u8"
+},
+{
+"id": "at2",
+"name": "奥地利 · Antenne Kaernten (720p)",
+"country": "奥地利",
+"stream": "https://60efd7a2b4d02.streamlock.net/a_kaernten/ngrp:livestream_all/playlist.m3u8"
+},
+{
+"id": "at3",
+"name": "奥地利 · Antenne Steiermark (720p)",
+"country": "奥地利",
+"stream": "https://60efd7a2b4d02.streamlock.net/a_steiermark/ngrp:livestream_all/playlist.m3u8"
+},
+{
+"id": "at4",
+"name": "奥地利 · Antenne Vorarlberg (720p) [Not 24/7]",
+"country": "奥地利",
+"stream": "https://5857db5306b83.streamlock.net/antennevorarlberg-live/_definst_/mp4:livestream/playlist.m3u8"
+},
+{
+"id": "at5",
+"name": "奥地利 · arte (1080p)",
+"country": "奥地利",
+"stream": "http://c3921155.edmonst.net/iptv/65C7UBRRW8GHQVYPH2MQT3SA/15171/index.m3u8"
+},
+{
+"id": "at6",
+"name": "奥地利 · arte HD",
+"country": "奥地利",
+"stream": "https://dash4.antik.sk/live/test_arte_avc_25p/playlist.m3u8"
+},
+{
+"id": "at7",
+"name": "奥地利 · Balkan Radio Salzburg (480p)",
+"country": "奥地利",
+"stream": "https://channel.streams.ovh:1936/balkanradiosalzburgtv/balkanradiosalzburgtv/playlist.m3u8"
+},
+{
+"id": "pl0",
+"name": "波兰 · 4 Fun Kids (576i) [[Not 24/7]]",
+"country": "波兰",
+"stream": "https://stream.4fun.tv:8889/hls/4fk_high/index.m3u8"
+},
+{
+"id": "pl1",
+"name": "波兰 · 4 Fun TV (576i) [Not 24/7]",
+"country": "波兰",
+"stream": "https://stream.4fun.tv:8888/hls/4f_high/index.m3u8"
+},
+{
+"id": "pl2",
+"name": "波兰 · American Crime Channel",
+"country": "波兰",
+"stream": "https://d39g1vxj2ef6in.cloudfront.net/v1/master/3fec3e5cac39a52b2132f9c66c83dae043dc17d4/prod-rakuten-stitched/master.m3u8?ads.xumo_channelId=88883104"
+},
+{
+"id": "pl3",
+"name": "波兰 · ATM Rozrywka REWORK (1080p)",
+"country": "波兰",
+"stream": "https://grupaatmrr.org.pl:8888/fallback/index.m3u8"
+},
+{
+"id": "pl4",
+"name": "波兰 · Bialogardzka Telewizja Kablowa (1080p)",
+"country": "波兰",
+"stream": "https://bsmbialogard.pl/live/index.m3u8"
+},
+{
+"id": "pl5",
+"name": "波兰 · Bigtime",
+"country": "波兰",
+"stream": "https://103f01c3ff79408e83c9212f8a374ecc.mediatailor.us-east-1.amazonaws.com/v1/master/0fb304b2320b25f067414d481a779b77db81760d/RakutenTV-eu_BjgtjmeDarmoweFilmy/playlist.m3u8"
+},
+{
+"id": "pl6",
+"name": "波兰 · BTB (1080p)",
+"country": "波兰",
+"stream": "https://emisja.btb.j00r.us/iptv/session/1/hls.m3u8"
+},
+{
+"id": "pl7",
+"name": "波兰 · BTB 3 (1080p)",
+"country": "波兰",
+"stream": "https://emisja3.btb.j00r.us/iptv/session/3/hls.m3u8"
+},
+{
+"id": "ru0",
+"name": "俄罗斯 · 2x2 (576i)",
+"country": "俄罗斯",
+"stream": "https://bl.rutube.ru/livestream/392b4686b770bae2da6bf5ac4574add5/index.m3u8?s=tenr-yHXUv1wibfka78s2A&e=2068731801&scheme=https"
+},
+{
+"id": "ru1",
+"name": "俄罗斯 · 7TV (576p)",
+"country": "俄罗斯",
+"stream": "http://31.148.48.15/7TV/index.m3u8"
+},
+{
+"id": "ru2",
+"name": "俄罗斯 · 12 канал (1080p)",
+"country": "俄罗斯",
+"stream": "https://12channel.bonus-tv.ru/cdn/12channel/playlist.m3u8"
+},
+{
+"id": "ru3",
+"name": "俄罗斯 · 15+ Music (1080p)",
+"country": "俄罗斯",
+"stream": "https://live.15plusmg.ru/memfs/ce3366b1-bf25-4e24-96bb-1adf0d44bd3d.m3u8"
+},
+{
+"id": "ru4",
+"name": "俄罗斯 · 360° (1080p)",
+"country": "俄罗斯",
+"stream": "https://cdn-evacoder-tv.facecast.io/evacoder_hls_hi/CkxfR1xNUAJwTgtXTBZTAJli/index.m3u8"
+},
+{
+"id": "ru5",
+"name": "俄罗斯 · 360° Новости (1080p)",
+"country": "俄罗斯",
+"stream": "https://live-vgtrksmotrim.cdnvideo.ru/vgtrksmotrim/smotrim-live-03-srt.smil/playlist.m3u8"
+},
+{
+"id": "ru6",
+"name": "俄罗斯 · 365 Дней (576p)",
+"country": "俄罗斯",
+"stream": "http://31.148.48.15/365_dney/index.m3u8"
+},
+{
+"id": "ru7",
+"name": "俄罗斯 · .sci-fi (576p)",
+"country": "俄罗斯",
+"stream": "http://31.148.48.15/SONY_SCI_FI/index.m3u8"
+},
+{
+"id": "rs0",
+"name": "塞尔维亚 · Balkan Radio Salzburg (480p)",
+"country": "塞尔维亚",
+"stream": "https://channel.streams.ovh:1936/balkanradiosalzburgtv/balkanradiosalzburgtv/playlist.m3u8"
+},
+{
+"id": "rs1",
+"name": "塞尔维亚 · EDU TV (576p) [Not 24/7]",
+"country": "塞尔维亚",
+"stream": "https://5aa64ca8b95b8.streamlock.net:4443/edutv/edutelevizija/playlist.m3u8"
+},
+{
+"id": "rs2",
+"name": "塞尔维亚 · Marsh TV (720p) [Not 24/7]",
+"country": "塞尔维亚",
+"stream": "http://cdn.dovecher.tv:8081/live/marsh/playlist.m3u8"
+},
+{
+"id": "rs3",
+"name": "塞尔维亚 · Narodna TV (720p)",
+"country": "塞尔维亚",
+"stream": "https://edge8.pink.rs/narodnatv/index.m3u8"
+},
+{
+"id": "rs4",
+"name": "塞尔维亚 · Pannon RTV (648p)",
+"country": "塞尔维亚",
+"stream": "https://stream.nmih.hu:4102/live.m3u8"
+},
+{
+"id": "rs5",
+"name": "塞尔维亚 · Pink (720p)",
+"country": "塞尔维亚",
+"stream": "https://edge8.pink.rs/pinktv/index.m3u8"
+},
+{
+"id": "rs6",
+"name": "塞尔维亚 · Prva (1080p)",
+"country": "塞尔维亚",
+"stream": "http://51.83.135.95/Prva/index.m3u8"
+},
+{
+"id": "rs7",
+"name": "塞尔维亚 · Radio Hit FM TV (720p)",
+"country": "塞尔维亚",
+"stream": "https://peer2.tdiradio.com/static/streaming-playlists/hls/bab99862-ec1c-474f-9a02-4f8c8677d565/0.m3u8"
+},
+{
+"id": "hr0",
+"name": "克罗地亚 · Bravo! TV (1080p)",
+"country": "克罗地亚",
+"stream": "https://streaming.social3.hr/bravoTVkdjd7djd/XAbSERW5p3/2.m3u8"
+},
+{
+"id": "hr1",
+"name": "克罗地亚 · CMC TV (1080p)",
+"country": "克罗地亚",
+"stream": "https://stream.cmctv.hr:49998/cmc/live.m3u8"
+},
+{
+"id": "hr2",
+"name": "克罗地亚 · Diadora TV",
+"country": "克罗地亚",
+"stream": "https://diadoratv.stream/live/diadora/playlist.m3u8"
+},
+{
+"id": "hr3",
+"name": "克罗地亚 · Extra TV (1080p)",
+"country": "克罗地亚",
+"stream": "https://streaming.social3.hr/ExtraTVudzdhr5/uUankWqpXD/1.m3u8"
+},
+{
+"id": "hr4",
+"name": "克罗地亚 · like Gecko) Chrome/81.0.4044.138 Safari/537.36\" group-title=\"General\",HRT 1 (720p)",
+"country": "克罗地亚",
+"stream": "https://webtvstream.bhtelecom.ba/hrt1.m3u8"
+},
+{
+"id": "hr5",
+"name": "克罗地亚 · like Gecko) Chrome/81.0.4044.138 Safari/537.36\" group-title=\"General\",HRT 2 (720p)",
+"country": "克罗地亚",
+"stream": "https://webtvstream.bhtelecom.ba/hrt2.m3u8"
+},
+{
+"id": "hr6",
+"name": "克罗地亚 · like Gecko) Chrome/81.0.4044.138 Safari/537.36\" group-title=\"Culture;Documentary\",HRT 3 (720p)",
+"country": "克罗地亚",
+"stream": "https://webtvstream.bhtelecom.ba/hrt3.m3u8"
+},
+{
+"id": "hr7",
+"name": "克罗地亚 · Klape i Tambure TV (1080p)",
+"country": "克罗地亚",
+"stream": "https://stream.cmctv.hr:49998/kit/live.m3u8"
+},
+{
+"id": "ba0",
+"name": "波黑 · BHRT (720p) [Geo-blocked]",
+"country": "波黑",
+"stream": "https://bhrtstream.bhtelecom.ba/bhrtportal.m3u8"
+},
+{
+"id": "ba1",
+"name": "波黑 · like Gecko) Version/17.10 Safari/605.1.1\" group-title=\"General\",BHT 1 (720p)",
+"country": "波黑",
+"stream": "https://webtvstream.bhtelecom.ba/hls13/bhrtportal_hd_1200.m3u8"
+},
+{
+"id": "ba2",
+"name": "波黑 · Hayat (1080p)",
+"country": "波黑",
+"stream": "http://158.180.39.89:5033/hayat.m3u8"
+},
+{
+"id": "ba3",
+"name": "波黑 · Hayat Folk (1080p)",
+"country": "波黑",
+"stream": "http://158.180.39.89:5033/folk.m3u8"
+},
+{
+"id": "ba4",
+"name": "波黑 · Hayat Music (1080p)",
+"country": "波黑",
+"stream": "http://158.180.39.89:5033/music.m3u8"
+},
+{
+"id": "ba5",
+"name": "波黑 · Hayat Plus (1080p)",
+"country": "波黑",
+"stream": "http://158.180.39.89:5033/hayatplus.m3u8"
+},
+{
+"id": "ba6",
+"name": "波黑 · Hayatovci (1080p)",
+"country": "波黑",
+"stream": "http://158.180.39.89:5033/hayatovci.m3u8"
+},
+{
+"id": "ba7",
+"name": "波黑 · Kanal 6 (288p)",
+"country": "波黑",
+"stream": "https://restreamer1.tnt.ba/hls/kanal6.m3u8"
+},
+{
+"id": "si0",
+"name": "斯洛文尼亚 · Exodus TV (720p)",
+"country": "斯洛文尼亚",
+"stream": "https://584943999.r.worldssl.net/584943999/_definst_/vzivo/playlist.m3u8"
+},
+{
+"id": "si1",
+"name": "斯洛文尼亚 · Folx Slovenija (1080p)",
+"country": "斯洛文尼亚",
+"stream": "https://cdne.folxplay.tv/folx-trz/streams/ch-5/master.m3u8"
+},
+{
+"id": "si2",
+"name": "斯洛文尼亚 · GTV (360p) [Not 24/7]",
+"country": "斯洛文尼亚",
+"stream": "http://91.220.221.60/gtv_hls/gtv_03.m3u8"
+},
+{
+"id": "si3",
+"name": "斯洛文尼亚 · History Channel (1080p)",
+"country": "斯洛文尼亚",
+"stream": "https://streamer12.xploretv.si/__cl/cg:prod/__c/A1_SI_HISTORYHD_ott/__op/dash-default/__dci/__f/index.m3u8?admin=xploreTv_test_user&redirect=true"
+},
+{
+"id": "si4",
+"name": "斯洛文尼亚 · Kanal A",
+"country": "斯洛文尼亚",
+"stream": "https://streamer01.xploretv.si/__cl/cg:prod/__c/A1_SI_AKANALHD_ott/__op/dash-default/__dci/__f/index.m3u8?admin=xploreTv_test_user&redirect=true"
+},
+{
+"id": "si5",
+"name": "斯洛文尼亚 · One Adria (1080p)",
+"country": "斯洛文尼亚",
+"stream": "https://cdne.folxplay.tv/folx-trz/streams/ch-6/master.m3u8"
+},
+{
+"id": "si6",
+"name": "斯洛文尼亚 · SLO 1",
+"country": "斯洛文尼亚",
+"stream": "https://streamer03.xploretv.si/__cl/cg:prod/__c/A1_SI_SLO1HD_ott/__op/dash-default/__dci/__f/index.m3u8?admin=xploreTv_test_user&redirect=true"
+},
+{
+"id": "si7",
+"name": "斯洛文尼亚 · SLO 2",
+"country": "斯洛文尼亚",
+"stream": "https://streamer03.xploretv.si/__cl/cg:prod/__c/A1_SI_SLO2HD_ott/__op/dash-default/__dci/__f/index.m3u8?admin=xploreTv_test_user&redirect=true"
+},
+{
+"id": "me0",
+"name": "黑山 · Radio televizija Rožaje (614p) [Not 24/7]",
+"country": "黑山",
+"stream": "https://glb.bozztv.com/glb/ssh101/tvrozaje/index.m3u8"
+},
+{
+"id": "me1",
+"name": "黑山 · TV Niksic (720p)",
+"country": "黑山",
+"stream": "https://tv.rtv-niksic.me/hls/stream.m3u8"
+},
+{
+"id": "me2",
+"name": "黑山 · TVCG 1 (1080p) [Geo-blocked]",
+"country": "黑山",
+"stream": "https://rtcg-live-open-geo.morescreens.com/RTCG_1_001/playlist.m3u8"
+},
+{
+"id": "me3",
+"name": "黑山 · TVCG 2 (1080p) [Geo-blocked]",
+"country": "黑山",
+"stream": "https://rtcg-live-open-geo.morescreens.com/RTCG_1_002/playlist.m3u8"
+},
+{
+"id": "me4",
+"name": "黑山 · TVCG 3 (1080p) [Geo-blocked]",
+"country": "黑山",
+"stream": "https://rtcg-live-open-geo.morescreens.com/RTCG_1_003/playlist.m3u8"
+},
+{
+"id": "me5",
+"name": "黑山 · TVCG MNE (1080p)",
+"country": "黑山",
+"stream": "https://rtcg-live-open.morescreens.com/RTCG_1_004/playlist.m3u8"
+},
+{
+"id": "mk0",
+"name": "北马其顿 · Alsat [Geo-blocked]",
+"country": "北马其顿",
+"stream": "https://vipottbpkstream.vip.hr/Content/onevip-hls/Live/Channel(Alsat_M)/index.m3u8"
+},
+{
+"id": "mk1",
+"name": "北马其顿 · Cool TV (1080p) [Not 24/7]",
+"country": "北马其顿",
+"stream": "https://stream.nasatv.com.mk/cooltv/hls/cooltv_live.m3u8"
+},
+{
+"id": "mk2",
+"name": "北马其顿 · Folk Klub (720p)",
+"country": "北马其顿",
+"stream": "http://tv1.intv.mk:1935/live2/folkklub/index.m3u8"
+},
+{
+"id": "mk3",
+"name": "北马其顿 · Folk TV (1080p) [Not 24/7]",
+"country": "北马其顿",
+"stream": "https://stream.nasatv.com.mk/folktv/hls/folktv_live.m3u8"
+},
+{
+"id": "mk4",
+"name": "北马其顿 · Jazz TV (1080p) [Not 24/7]",
+"country": "北马其顿",
+"stream": "https://stream.nasatv.com.mk/jazztv/hls/jazztv_live.m3u8"
+},
+{
+"id": "mk5",
+"name": "北马其顿 · Kanal 5 (360p)",
+"country": "北马其顿",
+"stream": "https://s2.teve.mk/tvstanici/2/playlist.m3u8"
+},
+{
+"id": "mk6",
+"name": "北马其顿 · Love TV (1080p) [Not 24/7]",
+"country": "北马其顿",
+"stream": "https://stream.nasatv.com.mk/lovetv/hls/lovetv_live.m3u8"
+},
+{
+"id": "mk7",
+"name": "北马其顿 · M-Net HD (720p)",
+"country": "北马其顿",
+"stream": "http://ares.mnet.mk/hls/mnet.m3u8"
+},
+{
+"id": "xk0",
+"name": "科索沃 · Kohavision",
+"country": "科索沃",
+"stream": "https://gjirafa-video-live.gjirafa.net/gjvideo-livestream/lj9-pxm-o53-rp0/tracks-v4a1/mono.m3u8"
+},
+{
+"id": "xk1",
+"name": "科索沃 · RTK 3 (1080p)",
+"country": "科索沃",
+"stream": "https://gjirafa-video-live.gjirafa.net/gjvideo-livestream/rtk3/index.m3u8"
+},
+{
+"id": "xk2",
+"name": "科索沃 · RTV21",
+"country": "科索沃",
+"stream": "https://gjirafa-video-live.gjirafa.net/gjvideo-live/2cz-npl-jfn-9he/tracks-v2a1/mono.m3u8"
+},
+{
+"id": "xk3",
+"name": "科索沃 · T7 (720p)",
+"country": "科索沃",
+"stream": "https://gjirafa-video-live.gjirafa.net/gjvideo-livestream-specific/1z8-byc-4ee-lc9/index.m3u8"
+},
+{
+"id": "xk4",
+"name": "科索沃 · TV Arbëria 1 (720p)",
+"country": "科索沃",
+"stream": "https://yayin30.haber100.com/live/rtvarberia/playlist.m3u8"
+},
+{
+"id": "xk5",
+"name": "科索沃 · TV Arbëria 3 Fëmijë (720p)",
+"country": "科索沃",
+"stream": "https://ssh101.bozztv.com/ssh101/rtvarberia3/playlist.m3u8"
+},
+{
+"id": "xk6",
+"name": "科索沃 · TV Arbëria 4 Muzikë (720p)",
+"country": "科索沃",
+"stream": "https://ssh101.bozztv.com/ssh101/rtvarberia4/playlist.m3u8"
+},
+{
+"id": "xk7",
+"name": "科索沃 · TV Arbëria Retro Hits (720p)",
+"country": "科索沃",
+"stream": "https://ssh101.bozztv.com/ssh101/rtvarberiaretro/playlist.m3u8"
+},
+{
+"id": "eg0",
+"name": "埃及 · Aghapy TV (1080p) [Not 24/7]",
+"country": "埃及",
+"stream": "https://5b622f07944df.streamlock.net/aghapy.tv/aghapy.smil/playlist.m3u8"
+},
+{
+"id": "eg1",
+"name": "埃及 · Al Ghad TV (1080p)",
+"country": "埃及",
+"stream": "https://eazyvwqssi.erbvr.com/alghadtv/alghadtv.m3u8"
+},
+{
+"id": "eg2",
+"name": "埃及 · Al Masriyah (720p) [Geo-Blocked]",
+"country": "埃及",
+"stream": "https://viamotionhsi.netplus.ch/live/eds/almasriyah/browser-HLS8/almasriyah.m3u8"
+},
+{
+"id": "eg3",
+"name": "埃及 · ATVSat (1080p) [Not 24/7]",
+"country": "埃及",
+"stream": "https://stream.atvsat.com/atvsatlive/smil:atvsatlive.smil/playlist.m3u8"
+},
+{
+"id": "eg4",
+"name": "埃及 · CBC (576p)",
+"country": "埃及",
+"stream": "https://flu.systemnet.tv/CBC/index.m3u8"
+},
+{
+"id": "eg5",
+"name": "埃及 · CBC Drama (576p)",
+"country": "埃及",
+"stream": "https://flu.systemnet.tv/CBCDrama/index.m3u8"
+},
+{
+"id": "eg6",
+"name": "埃及 · CBC Sofra (576p)",
+"country": "埃及",
+"stream": "https://flu.systemnet.tv/CBCSofra/index.m3u8"
+},
+{
+"id": "eg7",
+"name": "埃及 · Coptic TV (720p) [Not 24/7]",
+"country": "埃及",
+"stream": "https://ctv.icopts.app/CTV/index.fmp4.m3u8"
+},
+{
+"id": "za0",
+"name": "南非 · 1KZN TV (576p)",
+"country": "南非",
+"stream": "https://cdn.freevisiontv.co.za/sttv/smil:1kzn.stream.smil/playlist.m3u8"
+},
+{
+"id": "za1",
+"name": "南非 · Afriwood Blockbuster (720p)",
+"country": "南非",
+"stream": "https://streamdot.broadpeak.io/cff02a74da64d145c102a2d012758398/afxpstr/AfriwoodBlockbuster/index.m3u8"
+},
+{
+"id": "za2",
+"name": "南非 · BOKTV (720p) [Not 24/7]",
+"country": "南非",
+"stream": "https://livestream2.bokradio.co.za/hls/Bok5c.m3u8"
+},
+{
+"id": "za3",
+"name": "南非 · Cape Town TV (576p)",
+"country": "南非",
+"stream": "https://cdn.freevisiontv.co.za/sttv/smil:ctv.stream.smil/playlist.m3u8"
+},
+{
+"id": "za4",
+"name": "南非 · Cinema Hausa (720p)",
+"country": "南非",
+"stream": "https://streamdot.broadpeak.io/cff02a74da64d1459eeb779df71f0511/afxpstr/CinemaHausa/index.m3u8"
+},
+{
+"id": "za5",
+"name": "南非 · Crime and Evidence (720p)",
+"country": "南非",
+"stream": "https://afxporigin.telemedia.co.za/afxp/abr_crimeandevidence/playlist.m3u8"
+},
+{
+"id": "za6",
+"name": "南非 · ETVN (720p)",
+"country": "南非",
+"stream": "https://origin2.afxp.telemedia.co.za/abr_kapang/enterepreneur/playlist.m3u8"
+},
+{
+"id": "za7",
+"name": "南非 · Faith TV (576p)",
+"country": "南非",
+"stream": "https://cdn.freevisiontv.co.za/sttv/smil:faith.stream.smil/playlist.m3u8"
+},
+{
+"id": "au0",
+"name": "澳大利亚 · 2GB Sydney (1080p)",
+"country": "澳大利亚",
+"stream": "https://2gblive.akamaized.net/hls/live/2033805/2GB/index.m3u8"
+},
+{
+"id": "au1",
+"name": "澳大利亚 · 3AW Melbourne (1080p)",
+"country": "澳大利亚",
+"stream": "https://3awlive.akamaized.net/hls/live/2032295/3AW/index.m3u8"
+},
+{
+"id": "au2",
+"name": "澳大利亚 · 6PR Perth (1080p)",
+"country": "澳大利亚",
+"stream": "https://6prlive.akamaized.net/hls/live/2033806/6PR/index.m3u8"
+},
+{
+"id": "au3",
+"name": "澳大利亚 · 9Gem (720p) [Geo-blocked]",
+"country": "澳大利亚",
+"stream": "https://9now-livestreams.akamaized.net/hls/live/2008311/gem-syd/master.m3u8"
+},
+{
+"id": "au4",
+"name": "澳大利亚 · 9Go! (720p) [Geo-blocked]",
+"country": "澳大利亚",
+"stream": "https://9now-livestreams.akamaized.net/hls/live/2008312/go-syd/master.m3u8"
+},
+{
+"id": "au5",
+"name": "澳大利亚 · 9Life (720p) [Geo-blocked]",
+"country": "澳大利亚",
+"stream": "https://9now-livestreams.akamaized.net/hls/live/2008313/life-syd/master.m3u8"
+},
+{
+"id": "au6",
+"name": "澳大利亚 · 10 Bold Adelaide (1080p)",
+"country": "澳大利亚",
+"stream": "https://dce3793146fef017.mediapackage.us-west-2.amazonaws.com/out/v1/55cdf73af7894775ba6de8f57482b66a/CMAF_HLS/index.m3u8"
+},
+{
+"id": "au7",
+"name": "澳大利亚 · ABC Australia (1080p)",
+"country": "澳大利亚",
+"stream": "http://103.154.3.101:5001/live/2782.m3u8"
+},
+{
+"id": "in0",
+"name": "印度 · 4TV News (576p)",
+"country": "印度",
+"stream": "https://cdn-4.pishow.tv/live/1007/master.m3u8"
+},
+{
+"id": "in1",
+"name": "印度 · 6 TV Telugu (576p)",
+"country": "印度",
+"stream": "https://cdn-1.pishow.tv/live/232/master.m3u8"
+},
+{
+"id": "in2",
+"name": "印度 · 7S Music (576p)",
+"country": "印度",
+"stream": "https://mumt03.tangotv.in/Dsly5z3H7SMUSIC/index.m3u8"
+},
+{
+"id": "in3",
+"name": "印度 · 9X Jalwa (1080p)",
+"country": "印度",
+"stream": "https://b.jsrdn.com/strm/channels/9xjalwa/master.m3u8"
+},
+{
+"id": "in4",
+"name": "印度 · 9X Jhakaas (1080p)",
+"country": "印度",
+"stream": "https://9xjio.wiseplayout.com/9X_Jhakaas/master.m3u8"
+},
+{
+"id": "in5",
+"name": "印度 · 9X Tashan (1080p)",
+"country": "印度",
+"stream": "https://9xjio.wiseplayout.com/9X_Tashan/master.m3u8"
+},
+{
+"id": "in6",
+"name": "印度 · 9XM (1080p)",
+"country": "印度",
+"stream": "https://9xjio.wiseplayout.com/9XM/master.m3u8"
+},
+{
+"id": "in7",
+"name": "印度 · 10 TV (720p)",
+"country": "印度",
+"stream": "https://mumbai-edge.smartplaytv.in/10TV/index.m3u8"
+},
+{
+"id": "nz0",
+"name": "新西兰 · Adventure Earth (1080p)",
+"country": "新西兰",
+"stream": "https://a57e9c69976649b582a8d7604c00e69a.mediatailor.us-east-1.amazonaws.com/v1/master/44f73ba4d03e9607dcd9bebdcb8494d86964f1d8/RlaxxTV-eu_AdventureEarth/playlist.m3u8"
+},
+{
+"id": "nz1",
+"name": "新西兰 · Autentic History (1080p)",
+"country": "新西兰",
+"stream": "https://9e754fa707344ccca6d84955c8fcaf36.mediatailor.us-east-1.amazonaws.com/v1/master/44f73ba4d03e9607dcd9bebdcb8494d86964f1d8/RlaxxTV-eu_AutenticHistory/playlist.m3u8"
+},
+{
+"id": "nz2",
+"name": "新西兰 · Autentic Travel (1080p)",
+"country": "新西兰",
+"stream": "https://cb0c87cc605942ff9766a4e6744bbadc.mediatailor.us-east-1.amazonaws.com/v1/master/44f73ba4d03e9607dcd9bebdcb8494d86964f1d8/RlaxxTV-eu_AutenticTravel/playlist.m3u8"
+},
+{
+"id": "nz3",
+"name": "新西兰 · Bravo +1",
+"country": "新西兰",
+"stream": "https://i.mjh.nz/.r/bravo-plus1.m3u8"
+},
+{
+"id": "nz4",
+"name": "新西兰 · Channel 200 (540p)",
+"country": "新西兰",
+"stream": "https://d1jlnqid3sfc6m.cloudfront.net/out/v1/3fc2254c865a457c8d7fbbce227a2aae/index.m3u8"
+},
+{
+"id": "nz5",
+"name": "新西兰 · Duna World (576p)",
+"country": "新西兰",
+"stream": "http://146.59.85.40:89/dunaworld/index.m3u8"
+},
+{
+"id": "nz6",
+"name": "新西兰 · Euronews French (720p)",
+"country": "新西兰",
+"stream": "https://2f6c5bf4.wurl.com/master/f36d25e7e52f1ba8d7e56eb859c636563214f541/UmxheHhUVi1ldV9FdXJvbmV3c0ZyYW5jYWlzX0hMUw/playlist.m3u8"
+},
+{
+"id": "nz7",
+"name": "新西兰 · Euronews French HD (720p) [Geo-Blocked]",
+"country": "新西兰",
+"stream": "https://viamotionhsi.netplus.ch/live/eds/euronews/browser-HLS8/euronews.m3u8"
+},
+{
+"id": "mx0",
+"name": "墨西哥 · 8NTV (1080p)",
+"country": "墨西哥",
+"stream": "https://60417ddeaf0d9.streamlock.net/ntv/videontv/playlist.m3u8"
+},
+{
+"id": "mx1",
+"name": "墨西哥 · 15TV (720p) [Not 24/7]",
+"country": "墨西哥",
+"stream": "https://cdn.fastocloud.com/leonel.m3u8"
+},
+{
+"id": "mx2",
+"name": "墨西哥 · A+ [Geo-blocked]",
+"country": "墨西哥",
+"stream": "https://mdstrm.com/live-stream-playlist/60b56be1000ea50835fa1e63.m3u8"
+},
+{
+"id": "mx3",
+"name": "墨西哥 · ADN 40 (720p)",
+"country": "墨西哥",
+"stream": "https://mdstrm.com/live-stream-playlist/60b578b060947317de7b57ac.m3u8"
+},
+{
+"id": "mx4",
+"name": "墨西哥 · Alcance TV (720p)",
+"country": "墨西哥",
+"stream": "https://5bf8041cb3fed.streamlock.net/AlcanceTV/AlcanceTV/playlist.m3u8"
+},
+{
+"id": "mx5",
+"name": "墨西哥 · AMX Noticias (720p) [Not 24/7]",
+"country": "墨西哥",
+"stream": "https://5e50264bd6766.streamlock.net/mexiquense2/videomexiquense2/playlist.m3u8"
+},
+{
+"id": "mx6",
+"name": "墨西哥 · Así Sucede Guanajuato (720p) [Not 24/7]",
+"country": "墨西哥",
+"stream": "https://stream.oursnetworktv.com/latin/encoder13/playlist.m3u8"
+},
+{
+"id": "mx7",
+"name": "墨西哥 · Azteca 7 (720p) [Geo-blocked]",
+"country": "墨西哥",
+"stream": "https://mdstrm.com/live-stream-playlist/609ad46a7a441137107d7a81.m3u8"
+},
+{
+"id": "ca0",
+"name": "加拿大 · 3ABN Canada (720p)",
+"country": "加拿大",
+"stream": "https://3abn.bozztv.com/3abncanada/3ABN/master.m3u8"
+},
+{
+"id": "ca1",
+"name": "加拿大 · 5AAB TV (720p) [Not 24/7]",
+"country": "加拿大",
+"stream": "http://158.69.124.9:1935/5aabtv/5aabtv/playlist.m3u8"
+},
+{
+"id": "ca2",
+"name": "加拿大 · Afghan Nobel Movies (720p)",
+"country": "加拿大",
+"stream": "https://live.relentlessinnovations.net:1936/afghannobel/afghannobel/playlist.m3u8"
+},
+{
+"id": "ca3",
+"name": "加拿大 · Afghan Nobel TV (720p)",
+"country": "加拿大",
+"stream": "https://live.relentlessinnovations.net:1936/afghannobeltv/afghannobeltv/playlist.m3u8"
+},
+{
+"id": "ca4",
+"name": "加拿大 · Amazing Discoveries TV (720p)",
+"country": "加拿大",
+"stream": "https://uni01rtmp.tulix.tv/amazingdtv/amazingdtv/playlist.m3u8"
+},
+{
+"id": "ca5",
+"name": "加拿大 · Animation+ (1080p) [Geo-blocked]",
+"country": "加拿大",
+"stream": "https://pb-ioe9d0fpkd6pp.akamaized.net/playlist.m3u8"
+},
+{
+"id": "ca6",
+"name": "加拿大 · Autentic History (1080p)",
+"country": "加拿大",
+"stream": "https://9e754fa707344ccca6d84955c8fcaf36.mediatailor.us-east-1.amazonaws.com/v1/master/44f73ba4d03e9607dcd9bebdcb8494d86964f1d8/RlaxxTV-eu_AutenticHistory/playlist.m3u8"
+},
+{
+"id": "ca7",
+"name": "加拿大 · Autentic Travel (1080p)",
+"country": "加拿大",
+"stream": "https://cb0c87cc605942ff9766a4e6744bbadc.mediatailor.us-east-1.amazonaws.com/v1/master/44f73ba4d03e9607dcd9bebdcb8494d86964f1d8/RlaxxTV-eu_AutenticTravel/playlist.m3u8"
+},
+{
+"id": "pt0",
+"name": "葡萄牙 · ADB TV (1080p)",
+"country": "葡萄牙",
+"stream": "https://live-tv.waytv.pt/adbtv/adbtv/playlist.m3u8"
+},
+{
+"id": "pt1",
+"name": "葡萄牙 · Angel TV Portuguese (720p)",
+"country": "葡萄牙",
+"stream": "https://janya-digimix.akamaized.net/vglive-sk-382409/portuese/ngrp:angelportuguese_all/playlist.m3u8"
+},
+{
+"id": "pt2",
+"name": "葡萄牙 · ARTV Canal Parlamento (720p) [Not 24/7]",
+"country": "葡萄牙",
+"stream": "https://playout172.livextend.cloud/liveiframe/_definst_/liveartvabr/playlist.m3u8"
+},
+{
+"id": "pt3",
+"name": "葡萄牙 · Disney Channel (1080p)",
+"country": "葡萄牙",
+"stream": "http://151.80.18.177:86/Disney_Channel_HD/index.m3u8"
+},
+{
+"id": "pt4",
+"name": "葡萄牙 · Euronews Portuguese (720p)",
+"country": "葡萄牙",
+"stream": "https://6e52fb8b.wurl.com/master/f36d25e7e52f1ba8d7e56eb859c636563214f541/UmxheHhUVi1ldV9FdXJvbmV3c1BvcnR1Z3Vlc19ITFM/playlist.m3u8"
+},
+{
+"id": "pt5",
+"name": "葡萄牙 · Famatv (1080p) [Not 24/7]",
+"country": "葡萄牙",
+"stream": "https://tv2.fastcast4u.com:3310/live/famatvlive.m3u8"
+},
+{
+"id": "pt6",
+"name": "葡萄牙 · FIFA+ Portuguese (720p)",
+"country": "葡萄牙",
+"stream": "https://e3be9ac5.wurl.com/master/f36d25e7e52f1ba8d7e56eb859c636563214f541/TEctYnJfRklGQVBsdXNQb3J0dWd1ZXNlX0hMUw/playlist.m3u8"
+},
+{
+"id": "pt7",
+"name": "葡萄牙 · Kuriakos Cine (1080p)",
+"country": "葡萄牙",
+"stream": "https://w2.manasat.com/kcine/smil:kcine.smil/playlist.m3u8"
+},
+{
+"id": "es0",
+"name": "西班牙 · 3Cat Càmeres del temps (1080p)",
+"country": "西班牙",
+"stream": "https://directes-tv-int.3catdirectes.cat/live-content/beauties-hls/master.m3u8"
+},
+{
+"id": "es1",
+"name": "西班牙 · 3Cat El búnquer (1080p)",
+"country": "西班牙",
+"stream": "https://fast-tailor.3catdirectes.cat/v1/channel/bunquer/hls.m3u8"
+},
+{
+"id": "es2",
+"name": "西班牙 · 3Cat Exclusiu 1 (1080p) [Geo-blocked]",
+"country": "西班牙",
+"stream": "https://directes-tv-cat.3catdirectes.cat/live-content/oca1-hls/master.m3u8"
+},
+{
+"id": "es3",
+"name": "西班牙 · 3Cat Exclusiu 2 (1080p) [Geo-blocked]",
+"country": "西班牙",
+"stream": "https://directes-tv-cat.3catdirectes.cat/live-content/oca2-hls/master.m3u8"
+},
+{
+"id": "es4",
+"name": "西班牙 · 3Cat Exclusiu 3 (1080p) [Geo-blocked]",
+"country": "西班牙",
+"stream": "https://directes-tv-cat.3catdirectes.cat/live-content/oca3-hls/master.m3u8"
+},
+{
+"id": "es5",
+"name": "西班牙 · 3Cat Plats bruts (1080p)",
+"country": "西班牙",
+"stream": "https://fast-tailor.3catdirectes.cat/v1/channel/ccma-channel2/hls.m3u8"
+},
+{
+"id": "es6",
+"name": "西班牙 · 3CatInfo (1080p)",
+"country": "西班牙",
+"stream": "https://directes-tv-int.3catdirectes.cat/live-origin/canal324-hls/master.m3u8"
+},
+{
+"id": "es7",
+"name": "西班牙 · 7 TeleValencia (576p)",
+"country": "西班牙",
+"stream": "https://play.cdn.enetres.net/9E9557EFCEBB43A89CEC8FBD3C500247022/028/playlist.m3u8"
+},
+{
+"id": "hk0",
+"name": "香港 · Celestial Movies (576i)",
+"country": "香港",
+"stream": "http://103.58.160.157:8278/720-CELESTIALMOVIES/playlist.m3u8"
+},
+{
+"id": "hk1",
+"name": "香港 · HOY Infotainment (1080p) [Geo-blocked]",
+"country": "香港",
+"stream": "https://hoytv-live-stream.hoy.tv/ch78/index.m3u8"
+},
+{
+"id": "hk2",
+"name": "香港 · HOY TV (1080p) [Geo-blocked]",
+"country": "香港",
+"stream": "https://hoytv-live-stream.hoy.tv/ch77/index.m3u8"
+},
+{
+"id": "hk3",
+"name": "香港 · Pet Club TV (1080p)",
+"country": "香港",
+"stream": "https://petclub-samsungaus.amagi.tv/playlist.m3u8"
+},
+{
+"id": "hk4",
+"name": "香港 · RTHK TV 31 (港台電視31) (1080p) [Geo-blocked]",
+"country": "香港",
+"stream": "https://rthktv31-live.akamaized.net/hls/live/2036818/RTHKTV31/master.m3u8"
+},
+{
+"id": "hk5",
+"name": "香港 · RTHK TV 32 (港台電視32) (1080p) [Geo-blocked]",
+"country": "香港",
+"stream": "https://rthktv32-live.akamaized.net/hls/live/2036819/RTHKTV32/master.m3u8"
+},
+{
+"id": "hk6",
+"name": "香港 · RTHK TV 33 (港台電視33) (1080p) [Geo-blocked]",
+"country": "香港",
+"stream": "https://rthktv33-live.akamaized.net/hls/live/2101641/RTHKTV33/master.m3u8"
+},
+{
+"id": "hk7",
+"name": "香港 · RTHK TV 34 (港台電視34) (1080p) [Geo-blocked]",
+"country": "香港",
+"stream": "https://rthktv34-live.akamaized.net/hls/live/2101642/RTHKTV34/master.m3u8"
+},
+{
+"id": "mo0",
+"name": "澳门 · Canal Macau Ch. 92 (720p) [Not 24/7]",
+"country": "澳门",
+"stream": "https://live3.tdm.com.mo/ch2/ch2.live/playlist.m3u8"
+},
+{
+"id": "mo1",
+"name": "澳门 · like Gecko) Chrome/144.0.0.0 Safari/537.36\" group-title=\"General\",Lotus Macau HD 720p (720p)",
+"country": "澳门",
+"stream": "https://cdn4.skygo.mn/live/disk1/Lotus/HLSv3-FTA/Lotus.m3u8"
+},
+{
+"id": "mo2",
+"name": "澳门 · Ou-Mun Macau Satellite Ch. 96 (720p)",
+"country": "澳门",
+"stream": "https://live3.tdm.com.mo/ch3/ch3.live/playlist.m3u8"
+},
+{
+"id": "mo3",
+"name": "澳门 · TDM Entertainment Ch. 95 (720p)",
+"country": "澳门",
+"stream": "https://live3.tdm.com.mo/ch6/hd_ch6.live/playlist.m3u8"
+},
+{
+"id": "mo4",
+"name": "澳门 · TDM Info. Macau (720p) [Not 24/7]",
+"country": "澳门",
+"stream": "https://live3.tdm.com.mo/ch5/info_ch5.live/playlist.m3u8"
+},
+{
+"id": "mo5",
+"name": "澳门 · TDM Ou Mun Macau Ch. 91 (720p)",
+"country": "澳门",
+"stream": "http://61.244.22.4/ch1/ch1.live/playlist.m3u8"
+},
+{
+"id": "mo6",
+"name": "澳门 · TDM Sports Ch. 93 (720p)",
+"country": "澳门",
+"stream": "https://live3.tdm.com.mo/ch4/sport_ch4.live/playlist.m3u8"
+},
+{
+"id": "zw0",
+"name": "津巴布韦 · Yadah TV (576p) [Not 24/7]",
+"country": "津巴布韦",
+"stream": "https://viewmedia7219.bozztv.com/wmedia/viewmedia100/web_018/Stream/playlist.m3u8"
+},
+{
+"id": "it0",
+"name": "意大利 · 7 RadioVisione (720p)",
+"country": "意大利",
+"stream": "https://stream10.xdevel.com/video1s976543-1932/stream/playlist.m3u8"
+},
+{
+"id": "it1",
+"name": "意大利 · 7 YOU & ME (720p)",
+"country": "意大利",
+"stream": "https://stream10.xdevel.com/video0s977798-2239/stream/playlist.m3u8"
+},
+{
+"id": "it2",
+"name": "意大利 · 12 TV Parma (540p) [Not 24/7]",
+"country": "意大利",
+"stream": "https://5929b138b139d.streamlock.net/12TVParma/livestream/playlist.m3u8"
+},
+{
+"id": "it3",
+"name": "意大利 · 20 Mediaset [Geo-blocked]",
+"country": "意大利",
+"stream": "https://live3-mediaset-it.akamaized.net/Content/hls_h0_clr_vos/live/channel(lb)/index.m3u8"
+},
+{
+"id": "it4",
+"name": "意大利 · 27 TwentySeven [Geo-blocked]",
+"country": "意大利",
+"stream": "https://live2.msf.cdn.mediaset.net/content/hls_h0_cls_vos/live/channel(ts)/index.m3u8"
+},
+{
+"id": "it5",
+"name": "意大利 · 51 Radio TV (480p) [Geo-blocked]",
+"country": "意大利",
+"stream": "http://wms.shared.streamshow.it/canale51/canale51/playlist.m3u8"
+},
+{
+"id": "it6",
+"name": "意大利 · 70-80 TV (1080P)",
+"country": "意大利",
+"stream": "https://585b674743bbb.streamlock.net/9050/9050/playlist.m3u8"
+},
+{
+"id": "it7",
+"name": "意大利 · 111 TV (720p)",
+"country": "意大利",
+"stream": "https://5db313b643fd8.streamlock.net/111/111/playlist.m3u8"
+},
+{
+"id": "dk0",
+"name": "丹麦 · BL-TV/TV Storbyen (720p) [Not 24/7]",
+"country": "丹麦",
+"stream": "https://5eeb3940cfaa0.streamlock.net/webtv_live/_definst_/mp4:kanalnordvest/playlist.m3u8"
+},
+{
+"id": "dk1",
+"name": "丹麦 · DR1 (1080p) [Geo-blocked]",
+"country": "丹麦",
+"stream": "https://drlivedr1hls.akamaized.net/hls/live/2113625/drlivedr1/master.m3u8"
+},
+{
+"id": "dk2",
+"name": "丹麦 · DR2 (1080p) [Geo-blocked]",
+"country": "丹麦",
+"stream": "https://drlivedr2hls.akamaized.net/hls/live/2113623/drlivedr2/master.m3u8"
+},
+{
+"id": "dk3",
+"name": "丹麦 · DR Ramasjang (720p) [Geo-blocked]",
+"country": "丹麦",
+"stream": "https://drlive03hls.akamaized.net/hls/live/2014190/drlive03/master.m3u8"
+},
+{
+"id": "dk4",
+"name": "丹麦 · DRTV (1080p)",
+"country": "丹麦",
+"stream": "https://drlivedrtvahls.akamaized.net/hls/live/2113613/drlivedrtva/master.m3u8"
+},
+{
+"id": "dk5",
+"name": "丹麦 · Folketinget (1080p) [Not 24/7]",
+"country": "丹麦",
+"stream": "https://cdnapi.kaltura.com/p/2158211/sp/327418300/playManifest/entryId/1_24gfa7qq/protocol/https/format/applehttp/a.m3u8"
+},
+{
+"id": "dk6",
+"name": "丹麦 · Kanal Hovedstaden (720p) [Not 24/7]",
+"country": "丹麦",
+"stream": "http://khkbh.dk:8080/hls/livestream/index.m3u8"
+},
+{
+"id": "dk7",
+"name": "丹麦 · KKRtv (720p) [Not 24/7]",
+"country": "丹麦",
+"stream": "http://stream.kkr.dk/live/kkr/playlist.m3u8"
+},
+{
+"id": "se0",
+"name": "瑞典 · Aryen TV (1080p) [Not 24/7]",
+"country": "瑞典",
+"stream": "https://aryen.tv/live/tv/playlist.m3u8"
+},
+{
+"id": "se1",
+"name": "瑞典 · ATG Live (720p)",
+"country": "瑞典",
+"stream": "https://kanal75xto-llhls.akamaized.net/live/Data/atg-kanal-15-02a-rr/HLS-Legacy-HL/atg-kanal-15-02a-rr.m3u8"
+},
+{
+"id": "se2",
+"name": "瑞典 · Di TV (1080p)",
+"country": "瑞典",
+"stream": "https://cdn0-03837-liveedge0.dna.ip-only.net/03837-liveedge0/smil:03837-tx4/playlist.m3u8"
+},
+{
+"id": "se3",
+"name": "瑞典 · Expressen TV (1080p)",
+"country": "瑞典",
+"stream": "https://cdn0-03837-liveedge0.dna.ip-only.net/03837-liveedge0/smil:03837-tx2/playlist.m3u8"
+},
+{
+"id": "se4",
+"name": "瑞典 · Himlen TV7 (720p)",
+"country": "瑞典",
+"stream": "https://vod.tv7.fi/tv7-se/smil:tv7-se.smil/playlist.m3u8"
+},
+{
+"id": "se5",
+"name": "瑞典 · Horse & Country TV (1080p)",
+"country": "瑞典",
+"stream": "https://hnc-free-viewlift.amagi.tv/HNC_AUSTRALIA.m3u8"
+},
+{
+"id": "se6",
+"name": "瑞典 · Komala TV",
+"country": "瑞典",
+"stream": "https://komhls.wns.live/hls/stream.m3u8"
+},
+{
+"id": "se7",
+"name": "瑞典 · Kunskapskanalen (1080p) [Geo-blocked]",
+"country": "瑞典",
+"stream": "https://svt-live-channel.akamaized.net/l6/se/svtk/master-fmp4.m3u8?defaultSubLang=1&format=hls"
+},
+{
+"id": "fi0",
+"name": "芬兰 · Eveo (720p) [Not 24/7]",
+"country": "芬兰",
+"stream": "https://live-fi.tvkaista.net/eveo/live.m3u8?hd=true"
+},
+{
+"id": "fi1",
+"name": "芬兰 · Hero (720p) [Not 24/7]",
+"country": "芬兰",
+"stream": "https://live-fi.tvkaista.net/hero/live.m3u8?hd=true"
+},
+{
+"id": "fi2",
+"name": "芬兰 · Jim (720p)",
+"country": "芬兰",
+"stream": "https://live-fi.tvkaista.net/jim/live.m3u8?hd=true"
+},
+{
+"id": "fi3",
+"name": "芬兰 · JRTV Järviradio (720p)",
+"country": "芬兰",
+"stream": "https://streamer.radiotaajuus.fi/memfs/47f113bf-04ea-493b-a9d4-52945fd9db31.m3u8"
+},
+{
+"id": "fi4",
+"name": "芬兰 · Liv (720p)",
+"country": "芬兰",
+"stream": "https://live-fi.tvkaista.net/liv/live.m3u8?hd=true"
+},
+{
+"id": "fi5",
+"name": "芬兰 · MTV Uutiset (720p)",
+"country": "芬兰",
+"stream": "https://live.streaming.a2d.tv/asset/20025962.isml/.m3u8"
+},
+{
+"id": "fi6",
+"name": "芬兰 · NärTV (360p)",
+"country": "芬兰",
+"stream": "https://streaming.nartv.fi/live/ngrp:NAR_TV.stream_all/playlist.m3u8"
+},
+{
+"id": "fi7",
+"name": "芬兰 · National Geographic (Finland) (720p) [Geo-blocked]",
+"country": "芬兰",
+"stream": "https://live-fi.tvkaista.net/national-geographic/live.m3u8?hd=true"
+},
+{
+"id": "no0",
+"name": "挪威 · Canal Motor (720p)",
+"country": "挪威",
+"stream": "https://digicom.hls.iptvdc.com/canalmotor/index.m3u8"
+},
+{
+"id": "no1",
+"name": "挪威 · Frikanalen (720p)",
+"country": "挪威",
+"stream": "https://frikanalen.no/stream/index.m3u8"
+},
+{
+"id": "no2",
+"name": "挪威 · NRK 1 (1080i) [Geo-blocked]",
+"country": "挪威",
+"stream": "https://nrk-live-no.akamaized.net/nrk1/muxed.m3u8"
+},
+{
+"id": "no3",
+"name": "挪威 · NRK 2 (1080i) [Geo-blocked]",
+"country": "挪威",
+"stream": "https://nrk-live-no.akamaized.net/nrk2/muxed.m3u8"
+},
+{
+"id": "no4",
+"name": "挪威 · NRK 3 (1080i) [Geo-blocked]",
+"country": "挪威",
+"stream": "https://nrk-live-no.akamaized.net/nrk3/muxed.m3u8"
+},
+{
+"id": "no5",
+"name": "挪威 · NRK Super (1080i) [Geo-blocked]",
+"country": "挪威",
+"stream": "https://nrk-live-no.akamaized.net/nrksuper/muxed.m3u8"
+},
+{
+"id": "no6",
+"name": "挪威 · NRK Tegnspråk (1080i) [Geo-blocked]",
+"country": "挪威",
+"stream": "https://nrk-live-no.akamaized.net/nrk_tegnspraak/muxed.m3u8"
+},
+{
+"id": "no7",
+"name": "挪威 · TV Modum (720p)",
+"country": "挪威",
+"stream": "https://cdn010.panaccess.com/5677_streams/TVMODUM/index.m3u8"
+}
+]

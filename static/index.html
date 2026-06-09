@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>绿太阳指数 GreenIndex · 央视频道维度检测</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://unpkg.com/klinecharts@9.8.10/dist/umd/klinecharts.min.js"></script>
+</head>
+<body>
+<div class="warnbar">⚠ 本指数【不可交易】·私下涉赌为违法犯罪 ｜ 虚构演绎·仅供音视频分发的简易检测·切勿当真·结果可能不正确</div>
+
+<header>
+  <div class="brand">🟢 绿太阳指数 <span class="en">GreenIndex</span></div>
+  <div class="giwrap">
+    <div class="gival" id="giVal">--</div>
+    <div class="gimeta"><span id="giChg" class="chg">--</span><span id="giName" class="rname">--</span></div>
+  </div>
+  <div class="links">
+    <a onclick="openModal('agreement')">用户协议</a>
+    <a onclick="openModal('disclaimer')">免责声明</a>
+    <a onclick="openModal('thanks')">鸣谢</a>
+  </div>
+</header>
+
+<div class="advice" id="giTip">实时建议加载中…</div>
+
+<main>
+  <aside id="chanList"><div class="hd">频道维度（点击查看K线）</div></aside>
+  <section class="chartwrap">
+    <div class="chartbar">
+      <span id="curTitle">综合 · GreenIndex</span>
+      <span class="tfs" id="tfs">
+        <button data-tf="1" class="on">1s</button>
+        <button data-tf="10">10s</button>
+        <button data-tf="30">30s</button>
+        <button data-tf="60">1分</button>
+        <button data-tf="300">5分</button>
+        <button data-tf="900">15分</button>
+        <button data-tf="3600">1时</button>
+        <button data-tf="7200">2时</button>
+        <button data-tf="10800">3时</button>
+        <button data-tf="14400">4时</button>
+        <button data-tf="43200">12时</button>
+        <button data-tf="86400">1天</button>
+        <button data-tf="259200">3天</button>
+        <button data-tf="604800">1周</button>
+        <button data-tf="1296000">15天</button>
+        <button data-tf="2592000">月线</button>
+        <button data-tf="31536000">年线</button>
+      </span>
+      <span id="curMeta" class="curmeta"></span>
+    </div>
+    <div id="chart"></div>
+    <div class="curtip" id="curTip"></div>
+  </section>
+</main>
+
+<!-- 法务弹窗 -->
+<div class="modal" id="modal"><div class="box">
+  <button class="x" onclick="closeModal()">✕</button>
+  <div id="modalBody"></div>
+</div></div>
+
+<script>
+const LEGAL = {
+  agreement: `<h2>用户协议（必须阅读）</h2>
+<p>1. 本网站为<b>虚构演绎、仅供娱乐与音视频分发的简易检测</b>，所有“维度/界域/绿太阳指数”均为虚构设定，无任何现实依据，结果不科学、不准确、可能完全错误。</p>
+<p>2. <b>本指数不可交易</b>。任何以本指数进行的下注、对赌、买卖等行为，<b>私下涉赌属于违法犯罪</b>，与本站及作者无关，后果自负。</p>
+<p>3. 任何用户均可自由修改、传播本软件（开源）。继续使用即表示同意本协议与免责声明。</p>
+<p>4. 禁止“连接/代入”任何维度；请勿进行不可预知结果的想象活动（例如想象身处“丧尸维度”）。若已进行请立即停止。</p>`,
+  disclaimer: `<h2>免责声明</h2>
+<p>本站对央视频道音频做“维度”映射，<b>仅为娱乐性的象征系统</b>，并非对任何频道、节目、机构的真实评价。</p>
+<p>识别认的是“具体那条录音”的声学特征，启发式、会错；若对严肃音频（国歌、队歌、新闻）得到离谱结果，<b>那一定是错的，请勿相信</b>。</p>
+<p>本站<b>不抓取、不内置任何无权访问的受保护流</b>；默认演示模式下的走势为合成数据，<b>不代表任何真实内容</b>。如填入流地址，须为使用者自己有权访问者。</p>
+<p>本站<b>与任何官方机构、企业（例如腾讯、央视）无任何官方利益往来或合作</b>，仅由作者一人测试研究。</p>
+<p>反盗版：歌曲维度字典含作者用网易云VIP解密的自有缓存歌曲特征，特此向网易公司致歉；<b>请勿分发字典歌曲、勿盗版、勿商用</b>。本站不含任何音源文件。</p>`,
+  thanks: `<h2>单方面鸣谢</h2>
+<p>皆为作者出于感激而<b>单方面致谢</b>，对象可能并不知晓被鸣谢，亦不代表任何合作或背书。</p>
+<p><b>软件/平台</b>：Google、Microsoft(Windows)、Apple(发布会音频)、搜狗输入法、网易(歌曲库字典·详见致歉)、奇虎360(安全防护与垃圾清理)。<br>
+<b>重要</b>：Claude Code CLI 及其母公司。<br>
+<b>硬件/云</b>：NVIDIA 及各类显卡公司、联想 MECHREV 机械革命(RTX 3070 Laptop 150W，设备由 MagicGirl2000 购买)、阿里巴巴云服务器(ECS 99元 华南-深圳 3M 带宽优惠)。<br>
+<b>生活</b>：华为、小米、奥克斯空调、雅迪。<br>
+<b>政务/公共</b>：深圳市政府、向西村社区服务、罗湖区警察局、向西村社区警卫室、深圳市公安局110(作者银行卡曾因疑遭诈骗被刑警大队保护性冻结，经3天说明及笔录后已全部解冻)、市场监督管理局、12345热线、广东省政务服务网、微信公众号“深小注”(协助设立个体工商户24小时便利店)。<br>
+<b>可能对象</b>：腾讯、北京抖音、阿里巴巴、北京中央电视台、各类视频博主、武秀琴、香港大学滕易。<br>
+<b>特别鸣谢</b>：作者母亲(财务支持)、作者父亲(允许网络小范围活动)；新闻联播、焦点访谈、天气预报(提供音频测试)。</p>
+<p><b>重要免责</b>：本软件与任何官方机构、企业没有任何官方利益往来或合作，仅供有需要的人免费使用。</p>`,
+};
+function openModal(k){document.getElementById('modalBody').innerHTML=LEGAL[k];document.getElementById('modal').style.display='flex';}
+function closeModal(){document.getElementById('modal').style.display='none';}
+</script>
+<script src="app.js"></script>
+</body>
+</html>
