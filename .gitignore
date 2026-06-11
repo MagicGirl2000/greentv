@@ -3,6 +3,9 @@ link_key.txt
 proxy_token.txt
 sz_config.json
 *.key
+*.pem
+cert.pem
+key.pem
 
 # —— 运行时数据/日志 ——
 *.db

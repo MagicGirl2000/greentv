@@ -573,6 +573,20 @@ def _start_readers():
             london_proxy.start()                                     # 伦敦HTTP代理：深圳国际源经此(英国IP)下载
         except Exception as e:
             print("london_proxy 启动失败:", e)
+    if os.environ.get("GREENTV_HTTPS") == "1":                       # 同站 HTTPS(默认8443)，证书 cert.pem/key.pem
+        _cdir = os.environ.get("GREENTV_DATA", HERE)                  # 优先 数据目录(可替换为正式证书)，否则 HERE
+        cpath = os.path.join(_cdir, "cert.pem"); kpath = os.path.join(_cdir, "key.pem")
+        if not (os.path.exists(cpath) and os.path.exists(kpath)):
+            cpath = os.path.join(HERE, "cert.pem"); kpath = os.path.join(HERE, "key.pem")
+        if os.path.exists(cpath) and os.path.exists(kpath):
+            hport = int(os.environ.get("GREENTV_HTTPS_PORT", "8443"))
+            def _serve_https():
+                try:
+                    app.run(host="0.0.0.0", port=hport, threaded=True, use_reloader=False,
+                            ssl_context=(cpath, kpath))
+                except Exception as e:
+                    print("HTTPS 启动失败:", e)
+            threading.Thread(target=_serve_https, daemon=True).start()
     if RAW_SAMPLE:
         threading.Thread(target=_raw_sampler, daemon=True).start()   # (备用)伦敦并发采原始样本
     threading.Thread(target=uk_poller, daemon=True).start()   # 拉英国探针

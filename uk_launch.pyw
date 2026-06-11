@@ -34,6 +34,7 @@ def main():
                    GREENTV_READ_CN="1",                  # 英国本机直读中国频道(全球可达)
                    GREENTV_GLOBAL="1",                   # 全球820台列表(供浏览+点播)；英国不本地分析(无ROTATE/VIDEO)
                    GREENTV_PROXY_SERVE="1",              # 英国HTTP代理:8782(深圳国际源经此英国IP下载，绕开对华封锁)
+                   GREENTV_HTTPS="1",                    # 同站HTTPS:8443(证书 cert.pem/key.pem)
                    GREENTV_UK="http://127.0.0.1:8781")   # 同机探针走本地回环(公网EIP hairpin不通)
         subprocess.Popen([PYW, "server.py"], cwd=HERE, creationflags=NOWIN, env=env)
         started.append("网页 :8780")

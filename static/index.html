@@ -37,6 +37,7 @@
     <a onclick="openModal('agreement')" data-i18n="agr">用户协议</a>
     <a onclick="openModal('disclaimer')" data-i18n="dis">免责声明</a>
     <a onclick="openModal('thanks')" data-i18n="thx">鸣谢</a>
+    <a onclick="openModal('protection')" data-i18n="prot">🛡 保护声明</a>
     <select onchange="setLang(this.value)" title="语言/Language" style="background:#1b2330;color:#e6e6e6;border:1px solid #2a3340;border-radius:5px;padding:2px 4px">
       <option value="zh">中文</option><option value="en">English</option><option value="es">Español</option>
       <option value="fr">Français</option><option value="de">Deutsch</option><option value="ar">العربية</option>
@@ -115,6 +116,20 @@ const LEGAL = {
 <b>可能对象</b>：腾讯、北京抖音、阿里巴巴、北京中央电视台、各类视频博主、武秀琴、香港大学滕易。<br>
 <b>特别鸣谢</b>：作者母亲(财务支持)、作者父亲(允许网络小范围活动)；新闻联播、焦点访谈、天气预报(提供音频测试)。</p>
 <p><b>重要免责</b>：本软件与任何官方机构、企业没有任何官方利益往来或合作，仅供有需要的人免费使用。</p>`,
+  protection: `<h2>🛡 保护 · 归属 · 监管声明</h2>
+<p>本服务器、对外服务程序及其内容，受以下多重真实保护与监管（保护信息已写入本站 HTTPS 证书的 Organization / OU 字段与自定义扩展，点击浏览器地址栏锁形图标 → 证书详情 可核验）：</p>
+<p><b>🖥 系统与安全</b><br>
+· 本计算机软件运行于<b>美国 Microsoft</b> Windows，受 <b>Windows Defender</b> 全面防护与 Microsoft 安全更新保护；按 Windows 许可协议，<b>擅自破坏、修改、反编译机器码将受制裁</b>（本机持续向 Microsoft 提交错误报告）。<br>
+· 主机安全由<b>北京奇虎 360 企业安全云</b>部门防护（防火墙 / 杀毒 / 防卫报告）。<br>
+· 服务器由<b>杭州阿里巴巴总部·阿里云服务器 ECS</b> 部门提供并保护（自动化安全运维 / 防火墙 / 杀毒）；硬件与场地由<b>英国网络服务商、英国伦敦服务器场地</b>（组织名暂未透露）承载，并依托<b>美国根服务器（DNS 根）</b>供应商体系。<b>擅自攻击、破坏本服务器，将被阿里巴巴国际起诉。</b></p>
+<p><b>©️ 知识产权与归属</b><br>
+· 对外服务程序之<b>图标</b>由<b>北京字节跳动·豆包 AI</b> 部门生成并保护。<br>
+· 对外服务程序之<b>源码及已编译机器码</b>由<b>美国 Claude Code CLI</b> 部门及其母公司协助生成并保护，受著作权保护。<br>
+· 经英国服务器生成的程序已发布并<b>托管于美国 GitHub</b> 公司及其母公司，受其平台托管保护。<br>
+· 网站中的<b>音频字典</b>受<b>中国网易公司</b>版权保护：<b>严禁解码后盗版歌曲或分发字典</b>，违者将收到中国网易公司经<b>国际法院</b>发出的传票；<b>音频字典如下载，请于 24 小时内自行删除</b>。</p>
+<p><b>👮 法律与监管</b><br>
+本服务器及其内容受所在地法律保护，并接受<b>英国警察</b>、<b>中国网络警察</b>与<b>国际刑警组织（INTERPOL）</b>监管。<b>如有任何越界行为，均可被报警处理并依法追究。</b></p>
+<p style="color:#8b97a6;font-size:12px">本站为虚构演绎·仅供娱乐与音视频分发的简易检测；上述为运营主体（深圳市罗湖区南湖街道绿太阳便利店·个体工商户）的正式声明。</p>`,
 };
 function openModal(k){document.getElementById('modalBody').innerHTML=LEGAL[k];document.getElementById('modal').style.display='flex';}
 function closeModal(){document.getElementById('modal').style.display='none';const b=document.querySelector('#modal .box');if(b){b.style.maxWidth='';b.style.width='';}}
