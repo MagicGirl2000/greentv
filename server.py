@@ -474,6 +474,40 @@ def api_analysis_prov():
     return jsonify(ana.snapshot_prov())
 
 
+_geo_cache = {}                                   # ip -> (info, ts)
+_GATED_CONTINENTS = {"EU", "AS", "NA", "OC"}      # 欧洲/亚洲(含中东·中国香港韩日印)/北美洲/大洋洲
+_GATED_COUNTRIES = {"ZA"}                          # 南非(非洲中点名)
+
+
+@app.route("/api/agecheck")
+def api_agecheck():
+    """按访客 IP 识别所属大洲/国家，判断是否需要弹出【青少年防沉迷·年龄确认】门禁。
+    仅做地区判断；不采集、不存储任何身份证件信息。失败/未知→保守弹门(保护青少年)。"""
+    import json as _json
+    import urllib.request as _u
+    ip = (request.headers.get("X-Forwarded-For", "").split(",")[0].strip()
+          or request.remote_addr or "")
+    if ip in ("", "::1") or ip.startswith(("127.", "10.", "192.168.", "172.")):
+        return jsonify({"gate": False, "region": "local", "country": "", "minAge": 22})
+    now = time.time()
+    c = _geo_cache.get(ip)
+    if c and now - c[1] < 86400:
+        info = c[0]
+    else:
+        info = {"continentCode": "?", "countryCode": "?", "country": "?"}
+        try:
+            url = "http://ip-api.com/json/%s?fields=continentCode,countryCode,country" % ip
+            info = _json.loads(_u.urlopen(url, timeout=4).read())
+        except Exception:
+            pass
+        _geo_cache[ip] = (info, now)
+    cc = info.get("continentCode") or "?"
+    ctry = info.get("countryCode") or "?"
+    gate = (cc in _GATED_CONTINENTS) or (ctry in _GATED_COUNTRIES) or (cc == "?")
+    return jsonify({"gate": bool(gate), "region": cc, "country": info.get("country", ""),
+                    "countryCode": ctry, "minAge": 22})
+
+
 _CH_BY_ID = {c["id"]: c for c in CHANS}
 
 
