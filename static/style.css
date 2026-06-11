@@ -59,3 +59,18 @@ aside .hd { padding: 10px 14px; color: #8b97a6; font-size: 12px; position: stick
 .modal h2 { color: #2ebd6b; margin-bottom: 12px; font-size: 18px; }
 .modal p { margin-bottom: 10px; font-size: 13px; color: #b9c2cd; }
 .modal b { color: #dfe6ee; }
+.wlink { color: #6bd0ff !important; font-weight: 700; }
+.wsig-on { background: #16302a; color: #2ebd6b; padding: 8px 10px; border-radius: 6px; font-size: 13px; }
+.wsig-off { background: #20262f; color: #9fb3c8; padding: 8px 10px; border-radius: 6px; font-size: 13px; }
+.wadvice { color: #ffd479; font-size: 13px; }
+.wacc { color: #9fb3c8; font-size: 12px; background: #0f1620; padding: 6px 10px; border-radius: 6px; }
+.wtabwrap { max-height: 46vh; overflow: auto; margin: 8px 0; }
+.wtab { border-collapse: collapse; width: 100%; font-size: 11px; }
+.wtab th { position: sticky; top: 0; background: #11161e; color: #8b97a6; padding: 4px 6px; font-weight: 400; }
+.wtab td { text-align: center; padding: 4px 6px; color: #fff; white-space: nowrap; }
+.wtab td.wreg { text-align: left; color: #dfe6ee; background: #131a24; position: sticky; left: 0; }
+.wnote { color: #6f7b8a; font-size: 11px; margin-top: 8px; }
+.slink { color: #c79af0 !important; font-weight: 700; }
+.satimgwrap { margin: 8px 0; text-align: center; }
+.satimg { max-width: 100%; border: 1px solid #2a3340; border-radius: 6px; }
+.satcap { color: #8b97a6; font-size: 11px; margin-top: 4px; }

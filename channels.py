@@ -4,25 +4,53 @@ stream 留空=演示模式(合成维度走势)。若你有【自己有权访问�
 严禁抓取无权访问的受保护流；本项目默认不内置任何受保护源。
 """
 
+# 中国频道直播源（用户自有权访问，取自 文档/Centeral：卫视音频源 + Coreplayer直播源）。
+# 腾讯云/各地CDN，全球可达、已实测可播；旧的 myalicdn 央视音频源已失效，移除。
+_QC = "http://wstvcpudtxy.liveplay.myqcloud.com/wstvcpud/udrm%s_1_hd.flv"   # 腾讯云卫视
+_CNR = "http://satellitepull.cnr.cn/live/%s.flv"                            # 央广拉流卫视
+_HRB = "http://streamings.hrbtv.net/live/%s?fmt=h264_400k_flv"               # 哈尔滨台
+
 CHANNELS = [
-    {"id": "CCTV1",  "name": "CCTV-1 综合",     "stream": ""},
-    {"id": "CCTV2",  "name": "CCTV-2 财经",     "stream": ""},
-    {"id": "CCTV3",  "name": "CCTV-3 综艺",     "stream": ""},
-    {"id": "CCTV4",  "name": "CCTV-4 中文国际", "stream": ""},
-    {"id": "CCTV5",  "name": "CCTV-5 体育",     "stream": ""},
-    {"id": "CCTV5P", "name": "CCTV-5+ 体育赛事","stream": ""},
-    {"id": "CCTV6",  "name": "CCTV-6 电影",     "stream": ""},
-    {"id": "CCTV7",  "name": "CCTV-7 国防军事", "stream": ""},
-    {"id": "CCTV8",  "name": "CCTV-8 电视剧",   "stream": ""},
-    {"id": "CCTV9",  "name": "CCTV-9 纪录",     "stream": ""},
-    {"id": "CCTV10", "name": "CCTV-10 科教",    "stream": ""},
-    {"id": "CCTV11", "name": "CCTV-11 戏曲",    "stream": ""},
-    {"id": "CCTV12", "name": "CCTV-12 社会与法","stream": ""},
-    {"id": "CCTV13", "name": "CCTV-13 新闻",    "stream": ""},
-    {"id": "CCTV14", "name": "CCTV-14 少儿",    "stream": ""},
-    {"id": "CCTV15", "name": "CCTV-15 音乐",    "stream": ""},
-    {"id": "CCTV16", "name": "CCTV-16 奥林匹克","stream": ""},
-    {"id": "CCTV17", "name": "CCTV-17 农业农村","stream": ""},
+    # —— 省级卫视(腾讯云 CDN，全球可达) ——
+    {"id": "BEIJING",   "name": "北京卫视",   "stream": _QC % "btv1"},
+    {"id": "DONGFANG",  "name": "东方卫视",   "stream": _QC % "dongfang"},
+    {"id": "TIANJIN",   "name": "天津卫视",   "stream": _QC % "tianjin"},
+    {"id": "CHONGQING", "name": "重庆卫视",   "stream": _QC % "chongqing"},
+    {"id": "ANHUI",     "name": "安徽卫视",   "stream": _QC % "anhui"},
+    {"id": "HUBEI",     "name": "湖北卫视",   "stream": _QC % "hubei"},
+    {"id": "HENAN",     "name": "河南卫视",   "stream": _QC % "henan"},
+    {"id": "HEBEI",     "name": "河北卫视",   "stream": _QC % "hebei"},
+    {"id": "SHANDONG",  "name": "山东卫视",   "stream": _QC % "shandong"},
+    {"id": "GUANGDONG", "name": "广东卫视",   "stream": _QC % "guangdong"},
+    {"id": "GUANGXI",   "name": "广西卫视",   "stream": _QC % "guangxi"},
+    {"id": "SICHUAN",   "name": "四川卫视",   "stream": _QC % "sichuan"},
+    {"id": "JIANGXI",   "name": "江西卫视",   "stream": _QC % "jiangxi"},
+    {"id": "DONGNAN",   "name": "东南卫视",   "stream": _QC % "dongnan"},
+    {"id": "JILIN",     "name": "吉林卫视",   "stream": _QC % "jilin"},
+    {"id": "LIAONING",  "name": "辽宁卫视",   "stream": _QC % "liaoning"},
+    {"id": "YUNNAN",    "name": "云南卫视",   "stream": _QC % "yunnan"},
+    {"id": "GANSU",     "name": "甘肃卫视",   "stream": _QC % "gansu"},
+    {"id": "NINGXIA",   "name": "宁夏卫视",   "stream": _QC % "ningxia"},
+    {"id": "QINGHAI",   "name": "青海卫视",   "stream": _QC % "qinghai"},
+    {"id": "GUIZHOU",   "name": "贵州卫视",   "stream": _QC % "guizhou"},
+    {"id": "HLJ",       "name": "黑龙江卫视", "stream": _QC % "heilongjiang"},
+    {"id": "XINJIANG",  "name": "新疆卫视",   "stream": _QC % "xinjiang"},
+    {"id": "XIZANG",    "name": "西藏卫视",   "stream": _QC % "xizang"},
+    {"id": "NMG",       "name": "内蒙古卫视", "stream": _QC % "neimenggu"},
+    {"id": "SHENZHENW", "name": "深圳卫视",   "stream": _QC % "shenzhen"},
+    # —— 省级卫视(央广拉流 CDN) ——
+    {"id": "ZHEJIANG",  "name": "浙江卫视",   "stream": _CNR % "wxzjws"},
+    {"id": "JIANGSU",   "name": "江苏卫视",   "stream": _CNR % "wx32jsws"},
+    {"id": "HUNAN",     "name": "湖南卫视",   "stream": _CNR % "wx32hunws"},
+    {"id": "SHANXI_J",  "name": "山西卫视",   "stream": _CNR % "wxssxws"},
+    {"id": "SHAANXI",   "name": "陕西卫视",   "stream": _CNR % "wxsxxws"},
+    {"id": "HAINAN",    "name": "海南卫视",   "stream": _CNR % "wxhainlyws"},
+    {"id": "YANBIAN",   "name": "延边卫视",   "stream": _CNR % "wxybws"},
+    # —— 地方台 ——
+    {"id": "JINAN",     "name": "济南 JNTV-1",  "stream": "http://play.jinnantv.top/live/JNTV1.flv"},
+    {"id": "LUANNAN",   "name": "滦南综合",     "stream": "http://8.130.49.89/live/lntv1.flv"},
+    {"id": "HRBNEWS",   "name": "哈尔滨新闻综合", "stream": _HRB % "09267a2e15214137aaae37b8a7124b1b"},
+    {"id": "HRBYS",     "name": "哈尔滨影视",    "stream": _HRB % "4f28da88b8984bcbbced624179617f2c"},
 ]
 
 
@@ -40,11 +68,22 @@ CONTINENT = {
 
 
 def all_channels():
-    """CCTV + 国际频道，统一带 country / continent 字段。"""
+    """中国频道 + 国际频道，统一带 country / continent 字段。
+    GREENTV_GLOBAL=1 → 国际部分用全球 channels_global.json(174国/iptv-org)，否则用精选 channels_intl.json。"""
     import json
     import os
+    here = os.path.dirname(os.path.abspath(__file__))
     chans = [{**c, "country": "中国", "continent": "亚洲"} for c in CHANNELS]
-    p = os.path.join(os.path.dirname(os.path.abspath(__file__)), "channels_intl.json")
+    use_global = os.environ.get("GREENTV_GLOBAL") == "1"
+    gp = os.path.join(here, "channels_global.json")
+    if use_global and os.path.exists(gp):
+        try:
+            for c in json.load(open(gp, encoding="utf-8")):
+                chans.append(c)          # 已自带 continent
+            return chans
+        except Exception:
+            pass
+    p = os.path.join(here, "channels_intl.json")
     if os.path.exists(p):
         try:
             for c in json.load(open(p, encoding="utf-8")):

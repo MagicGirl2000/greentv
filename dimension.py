@@ -35,20 +35,34 @@ except Exception:
 import imageio_ffmpeg
 _FFMPEG = imageio_ffmpeg.get_ffmpeg_exe()
 
+_NOWIN = 0x08000000 if os.name == "nt" else 0   # CREATE_NO_WINDOW：不弹 ffmpeg 控制台窗口
+
 SR = 11025
 EXTREME = 150          # 超高维异常阈值（剔极端）
 
 
-def grab_audio(stream_url, seconds=3):
-    """从流地址抓取一小段音频 → float32 PCM @11025 单声道。失败返回 None。"""
+# 拉流超时(可调)：默认深圳本地快→短超时；伦敦拉HLS慢→设大(GREENTV_GRAB_TO 秒, GREENTV_RW_TO 微秒)。
+_RW_TO = os.environ.get("GREENTV_RW_TO", "6000000")
+_GRAB_TO = float(os.environ.get("GREENTV_GRAB_TO", "0"))   # >0 则覆盖默认进程超时
+
+
+def grab_audio(stream_url, seconds=3, ua=None, referrer=None, to=None, proxy=None):
+    """从流地址抓取一小段音频 → float32 PCM @11025 单声道。失败返回 None。支持 iptv 流的 ua/referrer。
+    to=进程超时秒(None→GREENTV_GRAB_TO 或 seconds+7)；proxy=HTTP代理(经伦敦英国IP下载，绕开地域限制)。"""
     if not stream_url:
         return None
+    args = [_FFMPEG, "-loglevel", "quiet", "-rw_timeout", _RW_TO]
+    if proxy:
+        args += ["-http_proxy", proxy]
+    if referrer:
+        args += ["-headers", "Referer: %s\r\n" % referrer]
+    if ua:
+        args += ["-user_agent", ua]
+    args += ["-i", stream_url, "-t", str(seconds), "-ar", str(SR), "-ac", "1", "-f", "f32le", "pipe:1"]
+    tmo = to if to is not None else (_GRAB_TO if _GRAB_TO > 0 else seconds + 7)
     try:
-        p = subprocess.run(
-            [_FFMPEG, "-loglevel", "quiet", "-rw_timeout", "6000000",
-             "-i", stream_url, "-t", str(seconds),
-             "-ar", str(SR), "-ac", "1", "-f", "f32le", "pipe:1"],
-            stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, timeout=seconds + 7)
+        p = subprocess.run(args, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL,
+                           timeout=tmo, creationflags=_NOWIN)
         x = np.frombuffer(p.stdout, dtype=np.float32)
         return x if x.size >= SR else None
     except Exception:
@@ -72,6 +86,60 @@ def analyze_audio(x):
         return float(np.median(keep)), float(np.mean(sims))
     except Exception:
         return None
+
+
+def grab_frame(stream_url, ua=None, referrer=None, to=None, proxy=None):
+    """从流抓 1 帧 → 缩略 64x36 RGB numpy。失败返回 None。to=进程超时秒；proxy=HTTP代理。"""
+    if not stream_url:
+        return None
+    args = [_FFMPEG, "-loglevel", "quiet", "-rw_timeout", _RW_TO]
+    if proxy:
+        args += ["-http_proxy", proxy]
+    if referrer:
+        args += ["-headers", "Referer: %s\r\n" % referrer]
+    if ua:
+        args += ["-user_agent", ua]
+    args += ["-i", stream_url, "-frames:v", "1", "-vf", "scale=64:36",
+             "-f", "rawvideo", "-pix_fmt", "rgb24", "-"]
+    tmo = to if to is not None else (_GRAB_TO if _GRAB_TO > 0 else 12)
+    try:
+        p = subprocess.run(args, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL,
+                           timeout=tmo, creationflags=_NOWIN)
+        buf = p.stdout
+        if buf and len(buf) >= 64 * 36 * 3:
+            return np.frombuffer(buf[:64 * 36 * 3], dtype=np.uint8).reshape(36, 64, 3).astype("float32")
+    except Exception:
+        pass
+    return None
+
+
+def frame_dim(frame):
+    """画面 → 一个维度值(基于亮度+饱和度)。粗略映射 3~113。无帧返回 None。"""
+    if frame is None:
+        return None
+    try:
+        r, g, b = float(frame[:, :, 0].mean()), float(frame[:, :, 1].mean()), float(frame[:, :, 2].mean())
+        bri = (r + g + b) / 3.0 / 255.0
+        mx, mn = max(r, g, b), min(r, g, b)
+        sat = (mx - mn) / mx if mx > 0 else 0.0
+        v = 5 + bri * 70 + sat * 30
+        return round(float(max(3.0, min(113.0, v))), 1)
+    except Exception:
+        return None
+
+
+def analyze_av(x, frame):
+    """音频维度 + 画面维度 融合(视频+音频)。两者都有→0.6音+0.4画；只一个→用那个。"""
+    a = analyze_audio(x)
+    av = a[0] if a else None
+    vv = frame_dim(frame)
+    if av is not None and vv is not None:
+        return (round(0.6 * av + 0.4 * vv, 1), a[1])
+    if av is not None:
+        return a
+    if vv is not None:
+        return (vv, 0.3)
+    return None
 
 
 # ---- 演示模式：每频道一个有界随机游走（无真实流时用，纯属合成，不代表真实内容）----

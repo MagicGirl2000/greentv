@@ -5,10 +5,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>绿太阳指数 GreenIndex · 央视频道维度检测</title>
 <link rel="stylesheet" href="style.css">
-<script src="https://unpkg.com/klinecharts@9.8.10/dist/umd/klinecharts.min.js"></script>
+<script src="klinecharts.min.js"></script>
 </head>
 <body>
 <div class="warnbar">⚠ 本指数【不可交易】·私下涉赌为违法犯罪 ｜ 虚构演绎·仅供音视频分发的简易检测·切勿当真·结果可能不正确</div>
+
+<div style="display:flex;justify-content:center;align-items:center;gap:20px;padding:9px 0;background:#0d141d;border-bottom:1px solid #1d2530">
+  <img src="uk_flag.png" title="英国" alt="英国" style="height:48px;border-radius:3px">
+  <img src="cn_flag.png" title="中国" alt="中国" style="height:48px;border-radius:3px">
+  <img src="gbr_flag.png" title="3.4Pszm" alt="3.4Pszm" style="height:48px;border-radius:3px">
+</div>
+
+<div style="text-align:center;font-size:12px;color:#8b97a6;line-height:1.95;padding:8px 18px 11px;background:#0d141d;border-bottom:1px solid #1d2530">
+  <span data-i18n="cr1">英国伦敦 提供场地与互联网服务商 ｜ 中国 提供创意与技术支持 ｜ 3.4 小组 提供便利研究服务</span><br>
+  <span data-i18n="cr2">GitHub 作者 MagicGirl2000 创意 ｜</span> <img src="us_flag.png" alt="美国" style="height:14px;vertical-align:-2px;border-radius:2px"> <span data-i18n="cr2b">Claude Code CLI 终极技术支持</span><br>
+  <span data-i18n="cr3">全球提供电视频道视频/音频数据 ｜ 腾讯 提供可能的技术测试与上报 ｜ 阿里巴巴 提供基础服务器 ｜ Microsoft 提供基础操作系统服务 ｜ 北京奇虎 360 提供终极安全保护防火墙与涉密项目保护</span><br>
+  <img src="fr_flag.png" alt="法国" style="height:14px;vertical-align:-2px;border-radius:2px"> <span data-i18n="cr4">作者因 Amélie Poulain（2001）电影受到无限启发</span>
+</div>
 
 <header>
   <div class="brand">🟢 绿太阳指数 <span class="en">GreenIndex</span></div>
@@ -17,9 +30,17 @@
     <div class="gimeta"><span id="giChg" class="chg">--</span><span id="giName" class="rname">--</span></div>
   </div>
   <div class="links">
-    <a onclick="openModal('agreement')">用户协议</a>
-    <a onclick="openModal('disclaimer')">免责声明</a>
-    <a onclick="openModal('thanks')">鸣谢</a>
+    <a onclick="openMap()" class="mlink" data-i18n="map">🗺 世界地图</a>
+    <a onclick="openWeather()" class="wlink" data-i18n="rain">🌦 降雨预测</a>
+    <a onclick="openSatellite()" class="slink" data-i18n="sat">🛰 卫星云图</a>
+    <a onclick="openAnalysis()" class="alink" data-i18n="ana">🌐 各地验证</a>
+    <a onclick="openModal('agreement')" data-i18n="agr">用户协议</a>
+    <a onclick="openModal('disclaimer')" data-i18n="dis">免责声明</a>
+    <a onclick="openModal('thanks')" data-i18n="thx">鸣谢</a>
+    <select onchange="setLang(this.value)" title="语言/Language" style="background:#1b2330;color:#e6e6e6;border:1px solid #2a3340;border-radius:5px;padding:2px 4px">
+      <option value="zh">中文</option><option value="en">English</option><option value="es">Español</option>
+      <option value="fr">Français</option><option value="de">Deutsch</option><option value="ar">العربية</option>
+    </select>
   </div>
 </header>
 
@@ -31,10 +52,8 @@
     <div class="chartbar">
       <span id="curTitle">综合 · GreenIndex</span>
       <span class="tfs" id="tfs">
-        <button data-tf="1" class="on">1s</button>
-        <button data-tf="10">10s</button>
-        <button data-tf="30">30s</button>
-        <button data-tf="60">1分</button>
+        <button data-tf="30">30秒</button>
+        <button data-tf="60" class="on">1分</button>
         <button data-tf="300">5分</button>
         <button data-tf="900">15分</button>
         <button data-tf="3600">1时</button>
@@ -53,6 +72,7 @@
     </div>
     <div id="chart"></div>
     <div class="curtip" id="curTip"></div>
+    <div id="tokenPanel" style="margin-top:6px;font-size:13px;padding:0 4px"></div>
   </section>
 </main>
 
@@ -61,6 +81,16 @@
   <button class="x" onclick="closeModal()">✕</button>
   <div id="modalBody"></div>
 </div></div>
+
+<!-- 电视点播弹窗 -->
+<div class="modal" id="tvModal"><div class="box" style="max-width:920px">
+  <button class="x" onclick="closeTV()">✕</button>
+  <h2 id="tvTitle" style="margin:0 0 8px">📺</h2>
+  <video id="tvVideo" controls autoplay playsinline style="width:100%;max-height:62vh;background:#000;border-radius:8px"></video>
+  <p class="wnote" id="tvNote">点播中转：服务器按需拉取该频道视频、转码后直播给你。点开才占带宽，关闭即停。部分纯大陆限定源本机读不到，可能无法播放。</p>
+</div></div>
+
+<script src="flv.min.js"></script>
 
 <script>
 const LEGAL = {
@@ -87,7 +117,19 @@ const LEGAL = {
 <p><b>重要免责</b>：本软件与任何官方机构、企业没有任何官方利益往来或合作，仅供有需要的人免费使用。</p>`,
 };
 function openModal(k){document.getElementById('modalBody').innerHTML=LEGAL[k];document.getElementById('modal').style.display='flex';}
-function closeModal(){document.getElementById('modal').style.display='none';}
+function closeModal(){document.getElementById('modal').style.display='none';const b=document.querySelector('#modal .box');if(b){b.style.maxWidth='';b.style.width='';}}
+// 进入界面即弹窗警告
+function showEntryWarning(){
+  document.getElementById('modalBody').innerHTML =
+    `<h2 style="color:#ffce4d">⚠ 进入提示</h2>
+     <p style="font-size:19px;line-height:1.9"><b style="color:#ff6b6b">严禁相信任何维度相关的信息，仅供娱乐。</b></p>
+     <p>本站所有“维度 / 界域 / 绿太阳指数”均为<b>虚构演绎</b>，结果不科学、可能完全错误；<b>不可当真，更不可用于任何现实决策或下注</b>（私下涉赌属违法犯罪）。</p>
+     <div style="text-align:center;margin-top:18px">
+       <button onclick="closeModal()" style="padding:11px 28px;font-size:15px;background:#2ebd6b;color:#fff;border:none;border-radius:8px;cursor:pointer">我知道了 · 仅供娱乐</button>
+     </div>`;
+  document.getElementById('modal').style.display='flex';
+}
+window.addEventListener('DOMContentLoaded', showEntryWarning);
 </script>
 <script src="app.js"></script>
 </body>

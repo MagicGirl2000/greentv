@@ -1,4 +1,26 @@
+# —— 敏感/本地密钥(切勿公开) ——
+link_key.txt
+proxy_token.txt
+sz_config.json
+*.key
+
+# —— 运行时数据/日志 ——
+*.db
+*.db-wal
+*.db-shm
+*.log
+_uk_err.log
+static/cloud_cn.jpg
+
+# —— 构建产物 ——
+build/
+dist/
+*.spec
+*.zip
+build_log.txt
+
+# —— Python ——
 __pycache__/
 *.pyc
-greentv.db
-*.log
+.venv/
+venv/
