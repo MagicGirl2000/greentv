@@ -28,6 +28,18 @@ def _data_dir():
 RES = _res_dir()
 DATA = _data_dir()
 os.environ.setdefault("GREENTV_DATA", DATA)         # 各模块的可写库都落这里
+# 跨境加密口令(两端必须一致)：优先环境变量 GREENTV_KEY，否则从内置 link_key.txt 注入。
+if not os.environ.get("GREENTV_KEY"):
+    for _d in (RES, DATA):
+        _kf = os.path.join(_d, "link_key.txt")
+        if os.path.exists(_kf):
+            try:
+                _kv = open(_kf, encoding="utf-8").read().strip()
+                if _kv:
+                    os.environ["GREENTV_KEY"] = _kv
+                break
+            except Exception:
+                pass
 os.environ.setdefault("GREENTV_CN_ONLY", "0")        # 深圳主服务=全量
 os.environ.setdefault("GREENTV_NO_DEMO", "1")        # 无数据即断连，不造演示数据
 os.environ.setdefault("GREENTV_GLOBAL", "1")         # 全球频道(iptv-org 174国/783台 + 中国)

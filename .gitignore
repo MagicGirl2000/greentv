@@ -7,7 +7,12 @@ sz_config.json
 cert.pem
 key.pem
 
-# —— 运行时数据/日志 ——
+# —— 用户系统/邮件(含邮箱与口令哈希，切勿公开) ——
+users.json
+smtp_config.json
+
+# —— 运行时数据/日志(含访客画像，切勿公开) ——
+portraits.jsonl
 *.db
 *.db-wal
 *.db-shm

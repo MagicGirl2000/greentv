@@ -54,6 +54,8 @@ function initChart() {
     xAxis: { axisLine: { color: "#2a3340" }, tickText: { color: "#8b97a6" } },
     yAxis: { axisLine: { color: "#2a3340" }, tickText: { color: "#8b97a6" } },
   });
+  // 响应式：尺寸/横竖屏变化时让 K 线图重新适配容器
+  let _rzt; window.addEventListener("resize", () => { clearTimeout(_rzt); _rzt = setTimeout(() => { try { chart && chart.resize && chart.resize(); } catch (e) {} }, 150); });
 }
 
 const toK = cs => cs.map(k => ({ timestamp: k.t * 1000, open: k.o, high: k.h, low: k.l, close: k.c, volume: 0 }));
@@ -75,6 +77,7 @@ async function loadSeries(reset = false) {
     }
     document.getElementById("curTitle").textContent = curName;
     updateTokenPanel();
+    updateRealmIntro(d.candles && d.candles.length ? d.candles[d.candles.length - 1].c : null);
     if (d.candles.length) {
       const last = d.candles[d.candles.length - 1].c;
       const init = d.initial != null ? d.initial : last;
@@ -269,6 +272,35 @@ async function openAnalysis() {
   document.getElementById("modal").style.display = "flex";
 }
 
+// ——— 维度互联网 ———
+async function openDimNet() {
+  let d;
+  try { d = await (await fetch("/api/dimnet")).json(); }
+  catch (e) { document.getElementById("modalBody").innerHTML = "<h2>🕸 维度互联网</h2><p>加载失败，请稍后重试。</p>"; document.getElementById("modal").style.display = "flex"; return; }
+  const byId = {}; (d.nodes || []).forEach(n => byId[n.id] = n);
+  let h = `<h2>🕸 维度互联网</h2>`;
+  h += `<p class="wnote" style="line-height:1.8">${d.rule || ""}<br>共 ${d.total} 个有数据频道，<b style="color:#2ebd6b">${d.eligible}</b> 个已达标（连涨≥${d.threshold}）可建连。${d.note || ""}</p>`;
+  if (!(d.eligible_nodes || []).length) {
+    h += `<p style="color:#ffce4d">当前暂无频道达到「连续 ${d.threshold} 个阳K线」。下面列出连涨势头最强的频道（蓄势中）：</p>`;
+    h += `<div class="wtabwrap"><table class="wtab"><tr><th>频道</th><th>维度</th><th>奇偶</th><th>连涨K</th><th>状态</th></tr>`;
+    (d.nodes || []).slice(0, 40).forEach(n => {
+      h += `<tr><td class="wreg">${ctry ? n.name : n.name}</td><td>${n.dim}</td><td>${n.parity}</td><td><b>${n.streak}</b></td><td>${n.eligible ? "✅可建连" : (n.streak >= d.threshold - 3 ? "🔥蓄势" : "—")}</td></tr>`;
+    });
+    h += `</table></div>`;
+  } else {
+    h += `<p style="color:#2ebd6b">✅ 已达标频道及其可连接对象（同奇偶）：</p>`;
+    h += `<div class="wtabwrap"><table class="wtab"><tr><th>频道</th><th>维度</th><th>奇偶</th><th>连涨K</th><th>可连接（同奇偶·达标）</th></tr>`;
+    (d.eligible_nodes || []).forEach(n => {
+      const conns = (n.connects || []).map(id => (byId[id] ? byId[id].name : id)).slice(0, 12).join("、") || "（暂无同奇偶达标频道）";
+      h += `<tr><td class="wreg">${n.name}</td><td>${n.dim}</td><td><b style="color:${n.parity === "单" ? "#7fd1ff" : "#ffb3b3"}">${n.parity}</b></td><td><b>${n.streak}</b></td><td style="text-align:left">${conns}</td></tr>`;
+    });
+    h += `</table></div>`;
+  }
+  h += `<p class="wnote">规则取自界域字典：单数维度=单数界，双数维度实为「负」界，故单连单、双连双。连涨10根阳K=该频道「阳气充足」方可接入维度互联网。${d.note || ""}</p>`;
+  document.getElementById("modalBody").innerHTML = h;
+  document.getElementById("modal").style.display = "flex";
+}
+
 // ——— 世界地图 · 图形SVG选国 ———
 let _isoZh = null, _mapSvg = null;
 async function ensureMapAssets() {
@@ -305,6 +337,20 @@ function _curCountry() {
   if (curId.indexOf("IDXC_") === 0) return curId.slice(5);
   const c = ((window._lastData && window._lastData.channels) || []).find(x => x.id === curId);
   return c ? c.country : null;
+}
+let _realmCache = {};
+async function updateRealmIntro(dim) {
+  const el = document.getElementById("realmIntro");
+  if (!el) return;
+  if (dim == null) { el.style.display = "none"; return; }
+  const k = Math.round(dim);
+  try {
+    let r = _realmCache[k];
+    if (!r) { r = await (await fetch("/api/realm?dim=" + k)).json(); _realmCache[k] = r; }
+    el.innerHTML = `<b style="color:#9be29b">📖 频道维度字典简介</b> · ${curName} · 维度 <b>${r.dim}</b><br>${r.intro || ""}`;
+    el.style.borderLeftColor = r.dirty ? "#eab308" : "#2ebd6b";
+    el.style.display = "block";
+  } catch (e) { el.style.display = "none"; }
 }
 async function updateTokenPanel() {
   const el = document.getElementById("tokenPanel");
@@ -477,12 +523,12 @@ document.addEventListener("fullscreenchange", () => {
 
 // ——— 多语言 i18n ———
 const I18N = {
-  zh: { rain: "🌦 降雨预测", sat: "🛰 卫星云图", ana: "🌐 各地验证", map: "🗺 世界地图", agr: "用户协议", dis: "免责声明", thx: "鸣谢", prot: "🛡 保护声明", advice: "实时建议加载中…", chans: "频道维度（点击看K线）", live: "直播", down: "断连", demo: "演示", sIdx: "📊 指数（点击看K线）", sCidx: "🌍 各国（地区）指数", sCh: "📺 频道", sDown: "🔴 断连", total: "共", units: "台", cover: "覆盖", advTip: "💡 综合建议：", now: "当前", init: "初始", chg: "涨跌", dim: "维" },
-  en: { rain: "🌦 Rain", sat: "🛰 Satellite", ana: "🌐 Verify", map: "🗺 World Map", agr: "Terms", dis: "Disclaimer", thx: "Thanks", prot: "🛡 Protection", advice: "Loading…", chans: "Channels (click for chart)", live: "Live", down: "Offline", demo: "Demo", sIdx: "📊 Indices (click for chart)", sCidx: "🌍 Country/Region Indices", sCh: "📺 Channels", sDown: "🔴 Offline", total: "Total", units: "", cover: "covers", advTip: "💡 Advice: ", now: "Now", init: "Init", chg: "Chg", dim: "D" },
-  es: { rain: "🌦 Lluvia", sat: "🛰 Satélite", ana: "🌐 Verificar", map: "🗺 Mapa Mundial", agr: "Términos", dis: "Aviso", thx: "Gracias", prot: "🛡 Protección", advice: "Cargando…", chans: "Canales (clic para gráfico)", live: "En vivo", down: "Desconectado", demo: "Demo", sIdx: "📊 Índices (clic)", sCidx: "🌍 Índices por país/región", sCh: "📺 Canales", sDown: "🔴 Desconectado", total: "Total", units: "", cover: "cubre", advTip: "💡 Consejo: ", now: "Ahora", init: "Inicial", chg: "Cambio", dim: "D" },
-  fr: { rain: "🌦 Pluie", sat: "🛰 Satellite", ana: "🌐 Vérifier", map: "🗺 Carte du Monde", agr: "Conditions", dis: "Avertissement", thx: "Merci", prot: "🛡 Protection", advice: "Chargement…", chans: "Chaînes (clic pour graphique)", live: "En direct", down: "Hors ligne", demo: "Démo", sIdx: "📊 Indices (clic)", sCidx: "🌍 Indices par pays/région", sCh: "📺 Chaînes", sDown: "🔴 Hors ligne", total: "Total", units: "", cover: "couvre", advTip: "💡 Conseil : ", now: "Actuel", init: "Init", chg: "Var", dim: "D" },
-  de: { rain: "🌦 Regen", sat: "🛰 Satellit", ana: "🌐 Prüfen", map: "🗺 Weltkarte", agr: "Bedingungen", dis: "Haftung", thx: "Danke", prot: "🛡 Schutz", advice: "Lädt…", chans: "Kanäle (Klick für Chart)", live: "Live", down: "Offline", demo: "Demo", sIdx: "📊 Indizes (Klick)", sCidx: "🌍 Länder-/Regionalindizes", sCh: "📺 Kanäle", sDown: "🔴 Offline", total: "Gesamt", units: "", cover: "deckt", advTip: "💡 Hinweis: ", now: "Jetzt", init: "Init", chg: "Änd", dim: "D" },
-  ar: { rain: "🌦 المطر", sat: "🛰 قمر", ana: "🌐 تحقق", map: "🗺 خريطة العالم", agr: "الشروط", dis: "إخلاء", thx: "شكر", prot: "🛡 الحماية", advice: "جارٍ التحميل…", chans: "القنوات (انقر للرسم)", live: "مباشر", down: "غير متصل", demo: "تجريبي", sIdx: "📊 المؤشرات (انقر)", sCidx: "🌍 مؤشرات الدول/المناطق", sCh: "📺 القنوات", sDown: "🔴 غير متصل", total: "المجموع", units: "", cover: "يغطي", advTip: "💡 نصيحة: ", now: "الآن", init: "بداية", chg: "تغير", dim: "" },
+  zh: { rain: "🌦 降雨预测", sat: "🛰 卫星云图", ana: "🌐 各地验证", map: "🗺 世界地图", agr: "用户协议", dis: "免责声明", thx: "鸣谢", prot: "🛡 保护声明", world: "🎮 维度世界", advice: "实时建议加载中…", chans: "频道维度（点击看K线）", live: "直播", down: "断连", demo: "演示", sIdx: "📊 指数（点击看K线）", sCidx: "🌍 各国（地区）指数", sCh: "📺 频道", sDown: "🔴 断连", total: "共", units: "台", cover: "覆盖", advTip: "💡 综合建议：", now: "当前", init: "初始", chg: "涨跌", dim: "维" },
+  en: { rain: "🌦 Rain", sat: "🛰 Satellite", ana: "🌐 Verify", map: "🗺 World Map", agr: "Terms", dis: "Disclaimer", thx: "Thanks", prot: "🛡 Protection", world: "🎮 Dim World", advice: "Loading…", chans: "Channels (click for chart)", live: "Live", down: "Offline", demo: "Demo", sIdx: "📊 Indices (click for chart)", sCidx: "🌍 Country/Region Indices", sCh: "📺 Channels", sDown: "🔴 Offline", total: "Total", units: "", cover: "covers", advTip: "💡 Advice: ", now: "Now", init: "Init", chg: "Chg", dim: "D" },
+  es: { rain: "🌦 Lluvia", sat: "🛰 Satélite", ana: "🌐 Verificar", map: "🗺 Mapa Mundial", agr: "Términos", dis: "Aviso", thx: "Gracias", prot: "🛡 Protección", world: "🎮 Mundo Dim", advice: "Cargando…", chans: "Canales (clic para gráfico)", live: "En vivo", down: "Desconectado", demo: "Demo", sIdx: "📊 Índices (clic)", sCidx: "🌍 Índices por país/región", sCh: "📺 Canales", sDown: "🔴 Desconectado", total: "Total", units: "", cover: "cubre", advTip: "💡 Consejo: ", now: "Ahora", init: "Inicial", chg: "Cambio", dim: "D" },
+  fr: { rain: "🌦 Pluie", sat: "🛰 Satellite", ana: "🌐 Vérifier", map: "🗺 Carte du Monde", agr: "Conditions", dis: "Avertissement", thx: "Merci", prot: "🛡 Protection", world: "🎮 Monde Dim", advice: "Chargement…", chans: "Chaînes (clic pour graphique)", live: "En direct", down: "Hors ligne", demo: "Démo", sIdx: "📊 Indices (clic)", sCidx: "🌍 Indices par pays/région", sCh: "📺 Chaînes", sDown: "🔴 Hors ligne", total: "Total", units: "", cover: "couvre", advTip: "💡 Conseil : ", now: "Actuel", init: "Init", chg: "Var", dim: "D" },
+  de: { rain: "🌦 Regen", sat: "🛰 Satellit", ana: "🌐 Prüfen", map: "🗺 Weltkarte", agr: "Bedingungen", dis: "Haftung", thx: "Danke", prot: "🛡 Schutz", world: "🎮 Dim-Welt", advice: "Lädt…", chans: "Kanäle (Klick für Chart)", live: "Live", down: "Offline", demo: "Demo", sIdx: "📊 Indizes (Klick)", sCidx: "🌍 Länder-/Regionalindizes", sCh: "📺 Kanäle", sDown: "🔴 Offline", total: "Gesamt", units: "", cover: "deckt", advTip: "💡 Hinweis: ", now: "Jetzt", init: "Init", chg: "Änd", dim: "D" },
+  ar: { rain: "🌦 المطر", sat: "🛰 قمر", ana: "🌐 تحقق", map: "🗺 خريطة العالم", agr: "الشروط", dis: "إخلاء", thx: "شكر", prot: "🛡 الحماية", world: "🎮 عالم البُعد", advice: "جارٍ التحميل…", chans: "القنوات (انقر للرسم)", live: "مباشر", down: "غير متصل", demo: "تجريبي", sIdx: "📊 المؤشرات (انقر)", sCidx: "🌍 مؤشرات الدول/المناطق", sCh: "📺 القنوات", sDown: "🔴 غير متصل", total: "المجموع", units: "", cover: "يغطي", advTip: "💡 نصيحة: ", now: "الآن", init: "بداية", chg: "تغير", dim: "" },
 };
 let curLang = "zh";
 function t(k) { return (I18N[curLang] && I18N[curLang][k]) || I18N.zh[k] || k; }

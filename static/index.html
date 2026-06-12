@@ -34,10 +34,13 @@
     <a onclick="openWeather()" class="wlink" data-i18n="rain">🌦 降雨预测</a>
     <a onclick="openSatellite()" class="slink" data-i18n="sat">🛰 卫星云图</a>
     <a onclick="openAnalysis()" class="alink" data-i18n="ana">🌐 各地验证</a>
+    <a onclick="openDimNet()" class="dnlink" data-i18n="dimnet">🕸 维度互联网</a>
     <a onclick="openModal('agreement')" data-i18n="agr">用户协议</a>
     <a onclick="openModal('disclaimer')" data-i18n="dis">免责声明</a>
     <a onclick="openModal('thanks')" data-i18n="thx">鸣谢</a>
     <a onclick="openModal('protection')" data-i18n="prot">🛡 保护声明</a>
+    <a onclick="openWorld()" class="wldlink" data-i18n="world">🎮 维度世界</a>
+    <a onclick="openAuth()" id="authLink">👤 登录/注册</a>
     <select onchange="setLang(this.value)" title="语言/Language" style="background:#1b2330;color:#e6e6e6;border:1px solid #2a3340;border-radius:5px;padding:2px 4px">
       <option value="zh">中文</option><option value="en">English</option><option value="es">Español</option>
       <option value="fr">Français</option><option value="de">Deutsch</option><option value="ar">العربية</option>
@@ -73,6 +76,7 @@
     </div>
     <div id="chart"></div>
     <div class="curtip" id="curTip"></div>
+    <div id="realmIntro" style="margin-top:6px;font-size:13px;padding:8px 11px;background:#0f1620;border-left:4px solid #2ebd6b;border-radius:6px;line-height:1.8;color:#cfe8ff;display:none"></div>
     <div id="tokenPanel" style="margin-top:6px;font-size:13px;padding:0 4px"></div>
   </section>
 </main>
@@ -116,8 +120,14 @@ const LEGAL = {
 <b>可能对象</b>：腾讯、北京抖音、阿里巴巴、北京中央电视台、各类视频博主、武秀琴、香港大学滕易。<br>
 <b>特别鸣谢</b>：作者母亲(财务支持)、作者父亲(允许网络小范围活动)；新闻联播、焦点访谈、天气预报(提供音频测试)。</p>
 <p><b>重要免责</b>：本软件与任何官方机构、企业没有任何官方利益往来或合作，仅供有需要的人免费使用。</p>`,
-  protection: `<h2>🛡 保护 · 归属 · 监管声明</h2>
-<p>本服务器、对外服务程序及其内容，受以下多重真实保护与监管（保护信息已写入本站 HTTPS 证书的 Organization / OU 字段与自定义扩展，点击浏览器地址栏锁形图标 → 证书详情 可核验）：</p>
+  protection: `<h2>🛡 身份 · 保护 · 归属 · 监管声明</h2>
+<div style="background:#0f1620;border:1px solid #243140;border-radius:8px;padding:12px 16px;margin:0 0 12px;line-height:1.9">
+<b style="color:#ffce4d">🏢 运营主体身份</b><br>
+组织 <b>GreenShop24（NanHuShop）</b> ｜ 主体 深圳市罗湖区南湖街道绿太阳便利店（个体工商户）<br>
+统一社会信用代码 <b>92440300MAKG0WCCX2</b> ｜ 经营者 石泽正<br>
+位置 <b>中国 · 深圳 · 罗湖</b> ｜ 级别 <b>Data Center（数据中心）</b><br>
+<span style="font-size:12px;color:#8b97a6">以上身份与下述全部保护信息均已嵌入本站「身份证书」：访问 <b>https://greensun3.com:8443</b> → 点锁形图标 → 证书详情（Organization / 多条 OU / 自定义扩展）即可核验。443 端口为 Let's Encrypt 受信任证书（域名验证型，不含企业字段）。</span></div>
+<p>本服务器、对外服务程序及其内容，受以下多重真实保护与监管：</p>
 <p><b>🖥 系统与安全</b><br>
 · 本计算机软件运行于<b>美国 Microsoft</b> Windows，受 <b>Windows Defender</b> 全面防护与 Microsoft 安全更新保护；按 Windows 许可协议，<b>擅自破坏、修改、反编译机器码将受制裁</b>（本机持续向 Microsoft 提交错误报告）。<br>
 · 主机安全由<b>北京奇虎 360 企业安全云</b>部门防护（防火墙 / 杀毒 / 防卫报告）。<br>
@@ -147,6 +157,9 @@ function showEntryWarning(){
 // 进入流程(地区识别→年龄声明→必看协议视频→满22下拉同意 / 未满22答题考核)见 agegate.js
 </script>
 <script src="agegate.js"></script>
+<script src="auth.js"></script>
+<script src="three.min.js"></script>
+<script src="world.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

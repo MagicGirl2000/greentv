@@ -508,6 +508,128 @@ def api_agecheck():
                     "countryCode": ctry, "minAge": 22})
 
 
+_dimnet_cache = {"t": 0, "thr": None, "data": None}
+
+
+def _up_streak(sid):
+    """该序列最近【连续上涨】根数：每根收盘高于上一根收盘(连涨阳K线)。"""
+    try:
+        cs = _candles(sid, 60, limit=24)
+    except Exception:
+        return 0
+    closes = [c["c"] for c in cs if c.get("c") is not None]
+    n = 0
+    for i in range(len(closes) - 1, 0, -1):
+        if closes[i] > closes[i - 1]:
+            n += 1
+        else:
+            break
+    return n
+
+
+@app.route("/api/dimnet")
+def api_dimnet():
+    """维度互联网：连续阳K线≥阈值的频道方可建连；单数维度只连单数、双数只连双数(如 47↔47.1/47.3/47.5/47.7/47.9)。"""
+    thr = max(1, min(30, int(request.args.get("thr", "10"))))
+    now = time.time()
+    if _dimnet_cache["data"] and now - _dimnet_cache["t"] < 30 and _dimnet_cache["thr"] == thr:
+        return jsonify(_dimnet_cache["data"])
+    nodes = []
+    for ch in CHANS:
+        cid = ch["id"]; stt = _state.get(cid)
+        dim = stt.get("dim") if stt else None
+        if dim is None:
+            continue
+        d = int(round(dim)); streak = _up_streak(cid)
+        nodes.append({"id": cid, "name": ch.get("name", cid), "country": ch.get("country"),
+                      "dim": round(dim, 1), "parity": "单" if d % 2 else "双",
+                      "streak": streak, "eligible": streak >= thr})
+    elig = [n for n in nodes if n["eligible"]]
+    for n in elig:
+        n["connects"] = [m["id"] for m in elig if m["id"] != n["id"] and m["parity"] == n["parity"]][:20]
+    nodes.sort(key=lambda x: -x["streak"])
+    data = {"threshold": thr, "total": len(nodes), "eligible": len(elig),
+            "nodes": nodes[:150], "eligible_nodes": elig,
+            "rule": "建立维度互联网的前提：该频道需【连续 %d 个阳K线（连涨）】；单数维度只连单数、双数只连双数"
+                    "（如 47 维 ↔ 47.1/47.3/47.5/47.7/47.9）。" % thr,
+            "note": "虚构演绎·仅供娱乐，切勿当真。"}
+    _dimnet_cache.update({"t": now, "thr": thr, "data": data})
+    return jsonify(data)
+
+
+@app.route("/api/realm")
+def api_realm():
+    """按维度返回【频道字典简介】(界域字典 realm_data)。dim 缺省用综合 GREEN 当前维度。"""
+    try:
+        import realm_data as _rd
+    except Exception:
+        return jsonify({"dim": None, "realm": "—", "intro": "字典未加载。"})
+    dq = request.args.get("dim")
+    if dq not in (None, "", "null"):
+        try:
+            dim = float(dq)
+        except Exception:
+            dim = None
+    else:
+        dim = _state.get("GREEN", {}).get("dim")
+    return jsonify(_rd.intro_for(dim))
+
+
+@app.route("/api/auth/code", methods=["POST"])
+def api_auth_code():
+    import users as _u
+    return jsonify(_u.request_code((request.get_json(silent=True) or {}).get("email")))
+
+
+@app.route("/api/auth/register", methods=["POST"])
+def api_auth_register():
+    import users as _u
+    o = request.get_json(silent=True) or {}
+    return jsonify(_u.register(o.get("username"), o.get("email"), o.get("password"), o.get("code")))
+
+
+@app.route("/api/auth/login", methods=["POST"])
+def api_auth_login():
+    import users as _u
+    o = request.get_json(silent=True) or {}
+    return jsonify(_u.login(o.get("login"), o.get("password")))
+
+
+@app.route("/api/auth/me")
+def api_auth_me():
+    import users as _u
+    tok = request.headers.get("X-Auth", "") or request.args.get("token", "")
+    u = _u.whoami(tok)
+    return jsonify({"user": u})
+
+
+@app.route("/api/auth/logout", methods=["POST"])
+def api_auth_logout():
+    import users as _u
+    return jsonify(_u.logout(request.headers.get("X-Auth", "")))
+
+
+@app.route("/api/portrait", methods=["POST"])
+def api_portrait():
+    """仅在访客【明确同意】后，接收非敏感的「用户画像」(自报偏好 + 浏览器/语言/时区)，
+    追加到本地 portraits.jsonl。不接收、不存储任何身份证件或精确定位。"""
+    import json as _json
+    try:
+        obj = request.get_json(force=True, silent=True) or {}
+    except Exception:
+        obj = {}
+    if not obj.get("consent"):
+        return jsonify({"ok": False, "note": "需访客同意"}), 200
+    rec = {"ts": int(time.time()), "portrait": obj.get("portrait"), "basic": obj.get("basic")}
+    try:
+        fp = os.path.join(os.environ.get("GREENTV_DATA", HERE), "portraits.jsonl")
+        with open(fp, "a", encoding="utf-8") as f:
+            f.write(_json.dumps(rec, ensure_ascii=False) + "\n")
+    except Exception:
+        pass
+    return jsonify({"ok": True})
+
+
 _CH_BY_ID = {c["id"]: c for c in CHANS}
 
 
@@ -580,11 +702,44 @@ def api_series():
     return jsonify({"id": sid, "tf": tf, "initial": _initial.get(sid), "candles": candles})
 
 
+def _start_net_services():
+    """代理 / HTTPS(443) / 身份证书HTTPS(8443) —— 优先秒起，不被慢的频道读取/天气/卫星拖慢。"""
+    if os.environ.get("GREENTV_PROXY_SERVE") == "1":
+        try:
+            import london_proxy
+            london_proxy.start()                                     # 伦敦HTTP代理：深圳国际源经此(英国IP)下载
+        except Exception as e:
+            print("london_proxy 启动失败:", e)
+    if os.environ.get("GREENTV_HTTPS") == "1":                       # 同站 HTTPS，证书 cert.pem/key.pem
+        _cdir = os.environ.get("GREENTV_DATA", HERE)                  # 优先 数据目录(可替换为正式证书)，否则 HERE
+        cpath = os.path.join(_cdir, "cert.pem"); kpath = os.path.join(_cdir, "key.pem")
+        if not (os.path.exists(cpath) and os.path.exists(kpath)):
+            cpath = os.path.join(HERE, "cert.pem"); kpath = os.path.join(HERE, "key.pem")
+        if os.path.exists(cpath) and os.path.exists(kpath):
+            hport = int(os.environ.get("GREENTV_HTTPS_PORT", "8443"))
+            threading.Thread(target=lambda: _https_serve(hport, cpath, kpath), daemon=True).start()
+        idir = os.environ.get("GREENTV_DATA", HERE)                   # 身份证书(自签，内嵌营业执照+企业身份+全部保护) 挂 8443
+        icert = os.path.join(idir, "cert_identity.pem"); ikey = os.path.join(idir, "key_identity.pem")
+        if not (os.path.exists(icert) and os.path.exists(ikey)):
+            icert = os.path.join(HERE, "cert_identity.pem"); ikey = os.path.join(HERE, "key_identity.pem")
+        if os.path.exists(icert) and os.path.exists(ikey):
+            iport = int(os.environ.get("GREENTV_IDENTITY_PORT", "8443"))
+            threading.Thread(target=lambda: _https_serve(iport, icert, ikey), daemon=True).start()
+
+
+def _https_serve(port, cert, key):
+    try:
+        app.run(host="0.0.0.0", port=port, threaded=True, use_reloader=False, ssl_context=(cert, key))
+    except Exception as e:
+        print("HTTPS(%d) 启动失败: %s" % (port, e))
+
+
 def _start_readers():
     demo_only = os.environ.get("GREENTV_DEMO_ONLY") == "1"   # 1=不开ffmpeg
     no_demo = os.environ.get("GREENTV_NO_DEMO") == "1"        # 1=不造演示数据，无源即断连
     read_cn = os.environ.get("GREENTV_READ_CN") == "1"        # 1=本机直读中国频道(全球可达，英国也能读)
     rotate = os.environ.get("GREENTV_ROTATE") == "1"          # 1=轮转采样(深圳全球，几百路也扛得住)
+    _start_net_services()                                     # 代理/HTTPS/身份证书 优先秒起
     if rotate:
         threading.Thread(target=_rotating_reader, daemon=True).start()   # 全部有源频道轮转采
         # 无源频道仍可演示(除非 no_demo)
@@ -601,26 +756,6 @@ def _start_readers():
                 threading.Thread(target=reader_demo, args=(ch["id"],), daemon=True).start()
             # no_demo 且无直连源 → 不启动任何读取，靠 深圳上报/英国探针，否则断连
             time.sleep(0.02)
-    if os.environ.get("GREENTV_PROXY_SERVE") == "1":
-        try:
-            import london_proxy
-            london_proxy.start()                                     # 伦敦HTTP代理：深圳国际源经此(英国IP)下载
-        except Exception as e:
-            print("london_proxy 启动失败:", e)
-    if os.environ.get("GREENTV_HTTPS") == "1":                       # 同站 HTTPS(默认8443)，证书 cert.pem/key.pem
-        _cdir = os.environ.get("GREENTV_DATA", HERE)                  # 优先 数据目录(可替换为正式证书)，否则 HERE
-        cpath = os.path.join(_cdir, "cert.pem"); kpath = os.path.join(_cdir, "key.pem")
-        if not (os.path.exists(cpath) and os.path.exists(kpath)):
-            cpath = os.path.join(HERE, "cert.pem"); kpath = os.path.join(HERE, "key.pem")
-        if os.path.exists(cpath) and os.path.exists(kpath):
-            hport = int(os.environ.get("GREENTV_HTTPS_PORT", "8443"))
-            def _serve_https():
-                try:
-                    app.run(host="0.0.0.0", port=hport, threaded=True, use_reloader=False,
-                            ssl_context=(cpath, kpath))
-                except Exception as e:
-                    print("HTTPS 启动失败:", e)
-            threading.Thread(target=_serve_https, daemon=True).start()
     if RAW_SAMPLE:
         threading.Thread(target=_raw_sampler, daemon=True).start()   # (备用)伦敦并发采原始样本
     threading.Thread(target=uk_poller, daemon=True).start()   # 拉英国探针

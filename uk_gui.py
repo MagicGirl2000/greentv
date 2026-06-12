@@ -31,13 +31,22 @@ except Exception as e:
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 PORT = int(os.environ.get("GREENTV_AGENT_PORT", "8781"))
-CONCURRENT = int(os.environ.get("GREENTV_CONCURRENT", "2"))   # 3M 小带宽建议 1~2
+CONCURRENT = int(os.environ.get("GREENTV_CONCURRENT", "8"))   # 服务器已升级，可适当并发
 
+# 探针采样【与网站同一套频道列表】(channels_global.json，GREENTV_GLOBAL=1)，且只采国际源
+# (中国源由网站本机 READ_CN 直读)。这样频道 ID 与网站一致，探针拿到的维度才能在网站 _merge 中生效。
 try:
-    with open(os.path.join(HERE, "channels_intl.json"), encoding="utf-8") as f:
-        CHANS = json.load(f)
+    import channels as ch_cfg
+    CHANS = [c for c in ch_cfg.all_channels() if c.get("country") != "中国" and c.get("stream")]
+    if not CHANS:                                    # 兜底：旧的精选国际表
+        with open(os.path.join(HERE, "channels_intl.json"), encoding="utf-8") as f:
+            CHANS = json.load(f)
 except Exception:
-    CHANS = []
+    try:
+        with open(os.path.join(HERE, "channels_intl.json"), encoding="utf-8") as f:
+            CHANS = json.load(f)
+    except Exception:
+        CHANS = []
 
 app = Flask(__name__)
 

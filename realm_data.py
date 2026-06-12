@@ -616,3 +616,24 @@ def realm_name(n):
     if m in REALMS:
         return REALMS[m]
     return "（{} 循环过渡界）".format(m)
+
+
+def intro_for(dim):
+    """按维度生成【频道字典简介】(界名 + 个位含义 + 洁净度 + 高低维 + 免责)。虚构演绎，仅供娱乐。"""
+    if dim is None:
+        return {"dim": None, "realm": "—", "intro": "暂无维度数据（该频道未成功采样）。"}
+    d = int(round(dim)); one = d % 10; tens = d // 10
+    realm = realm_name(d)
+    dirty = str(one) in DIRTY_DIGITS
+    meaning = DIGIT_MEANING.get(str(one), DIGIT_SHORT.get(str(one), ""))
+    p = []
+    p.append("《%s》（界号 %d）。" % (realm, d))
+    if one == 0:
+        p.append("个位 0 = 「外循环·大循环（人世间）」，再生与循环之界。")
+    else:
+        p.append("个位 %d = 「%s」，%s" % (one, meaning,
+                 "属不平衡/混乱界，阴气偏重，需警惕。" if dirty else "属较均衡/清明之界。"))
+    if tens >= 1:
+        p.append("十位及以上 %d：维度越高越清越绿、阳气越足、越清高。" % tens)
+    p.append("🟢 绿=再生与循环。本指数为虚构演绎，仅供娱乐，切勿当真，更不可涉赌。")
+    return {"dim": d, "realm": realm, "one": one, "dirty": dirty, "intro": "".join(p)}

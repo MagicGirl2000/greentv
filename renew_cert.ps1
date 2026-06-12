@@ -22,9 +22,10 @@ main()
 $out = ($code | & $py - 2>&1 | Out-String)
 $out | Out-File -Append -Encoding utf8 $log
 
-# 续期后(或保持现状)把最新证书拷到 greentv；服务下次启动即加载
+# 注意：443 现用 GlobalSign DV 证书(cert.pem)。LE 续期仅更新【备份】(*_le_backup.pem)，不覆盖现用证书。
+# 如需切回 LE，把 cert_le_backup.pem/key_le_backup.pem 改名为 cert.pem/key.pem 再重启即可。
 if (Test-Path "$le\fullchain.pem") {
-    Copy-Item "$le\fullchain.pem" "$g\cert.pem" -Force
-    Copy-Item "$le\privkey.pem"  "$g\key.pem"  -Force
-    "[$(Get-Date -f 'HH:mm:ss')] 已同步最新证书到 greentv (下次服务重启生效)" | Out-File -Append -Encoding utf8 $log
+    Copy-Item "$le\fullchain.pem" "$g\cert_le_backup.pem" -Force
+    Copy-Item "$le\privkey.pem"  "$g\key_le_backup.pem"  -Force
+    "[$(Get-Date -f 'HH:mm:ss')] LE 续期完成，已更新备份 *_le_backup.pem(未覆盖现用 GlobalSign 证书)" | Out-File -Append -Encoding utf8 $log
 }

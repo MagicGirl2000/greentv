@@ -74,3 +74,35 @@ aside .hd { padding: 10px 14px; color: #8b97a6; font-size: 12px; position: stick
 .satimgwrap { margin: 8px 0; text-align: center; }
 .satimg { max-width: 100%; border: 1px solid #2a3340; border-radius: 6px; }
 .satcap { color: #8b97a6; font-size: 11px; margin-top: 4px; }
+
+/* ===== 响应式：手机 / 平板自适应（整站） ===== */
+@media (max-width: 760px) {
+  header { flex-wrap: wrap; gap: 8px 12px; padding: 8px 12px; }
+  .brand { font-size: 17px; }
+  .brand .en { font-size: 12px; }
+  .gival { font-size: 22px; }
+  .links { margin-left: 0; width: 100%; justify-content: center; flex-wrap: wrap; gap: 8px 12px; }
+  .links a { font-size: 12px; }
+  .advice { padding: 7px 12px; font-size: 12px; }
+  main { flex-direction: column; height: auto; }
+  aside { width: 100%; max-height: 38vh; border-right: none; border-bottom: 1px solid #1d2530; }
+  .chartwrap { width: 100%; }
+  #chart { flex: none; height: 52vh; min-height: 280px; }
+  .chartbar { padding: 6px 10px; gap: 6px 10px; }
+  .curmeta { margin-left: 0; width: 100%; }
+  .tfs button { padding: 5px 9px; font-size: 12px; }
+  .modal .box { max-width: 94vw; width: 94vw; padding: 16px; max-height: 90vh; }
+  .modal h2 { font-size: 16px; }
+  .modal .x { top: 8px; right: 10px; }
+  .wtab { font-size: 10px; }
+  .wtab th, .wtab td { padding: 3px 4px; }
+  #realmIntro, #tokenPanel { font-size: 12px; }
+}
+@media (max-width: 460px) {
+  .brand { font-size: 15px; }
+  .gival { font-size: 18px; }
+  .links a { font-size: 11px; }
+  aside { max-height: 34vh; }
+  #chart { height: 48vh; }
+  .tfs button { padding: 4px 7px; font-size: 11px; margin-right: 2px; }
+}

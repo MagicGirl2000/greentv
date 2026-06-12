@@ -24,9 +24,10 @@ def busy(port):
 
 def main():
     started = []
-    # 探针 8781（带界面+托盘）
+    # 探针 8781（带界面+托盘）—— 用与网站同一套全球频道列表(ID才能对上、维度才能并入网站)
     if not busy(8781):
-        subprocess.Popen([PYW, "uk_gui.py"], cwd=HERE, creationflags=NOWIN)
+        penv = dict(os.environ, GREENTV_GLOBAL="1", GREENTV_CONCURRENT="8", GREENTV_GRAB_TO="25")
+        subprocess.Popen([PYW, "uk_gui.py"], cwd=HERE, creationflags=NOWIN, env=penv)
         started.append("探针 :8781")
     # 网页 8780（轻量演示模式）
     if not busy(8780):
