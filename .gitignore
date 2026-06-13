@@ -32,3 +32,6 @@ __pycache__/
 *.pyc
 .venv/
 venv/
+
+claude_key.txt
+chatlog.jsonl

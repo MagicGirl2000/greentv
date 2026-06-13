@@ -702,6 +702,79 @@ def api_series():
     return jsonify({"id": sid, "tf": tf, "initial": _initial.get(sid), "candles": candles})
 
 
+@app.route("/api/chat", methods=["POST"])
+def api_chat():
+    """维度世界群聊：与三魔女(Amelie/Mael/Sarah)对话。配置 claude_key.txt 或 ANTHROPIC_API_KEY 即用真实AI,否则前端回退本地小AI。"""
+    import json as _json
+    import urllib.request as _ur
+    data = request.get_json(force=True, silent=True) or {}
+    who = data.get("who", "group")
+    text = (data.get("text") or "")[:800]
+    history = data.get("history") or []
+    key = os.environ.get("ANTHROPIC_API_KEY") or os.environ.get("CLAUDE_API_KEY") or ""
+    if not key:
+        try:
+            key = open(os.path.join(HERE, "claude_key.txt"), encoding="utf-8").read().strip()
+        except Exception:
+            key = ""
+    personas = {
+        "Amelie": "你是绿太阳维度世界的女魔 Amelie：绿色长发、白皙皮肤、发绿光的眼睛；快乐、追求解放与自由(绿灯)。你是黄金交易员,也帮玩家管理这座虚拟城市。",
+        "Mael": "你是女魔 Mael：红色,因循守旧、追求永恒与秩序(红灯)。你是黄金交易员。",
+        "Sarah": "你是女魔 Sarah：黑色,冷静、追求暂停与平衡(黄灯)。你是黄金交易员。",
+        "Claude": "你是开创者的AI总管 Claude,统筹三魔女(Amelie/Mael/Sarah)自动治理这座虚拟城市,给出务实的经济/政策/建设改进建议。简短专业。",
+        "group": "这是绿太阳维度世界的群聊,成员:开创者(玩家)、AI总管 Claude、女魔 Amelie(绿/快乐/解放)、Mael(红/守旧/永恒)、Sarah(黑/冷静/平衡)。请让 Claude 与三位女魔各自用一两句、贴合人设地依次简短回复玩家(可涉及城市治理:扩建/财政/政策/招交易员)。",
+    }
+    sysmsg = personas.get(who, personas["group"]) + " 这是一个虚构城市模拟游戏,用简短中文、贴合人设回复。"
+    msgs = []
+    for m in history[-8:]:
+        role = m.get("role")
+        if role in ("user", "assistant"):
+            msgs.append({"role": role, "content": str(m.get("content", ""))[:500]})
+    msgs.append({"role": "user", "content": text or "你好"})
+    if not key:
+        return jsonify({"reply": None, "nokey": True})
+    try:
+        body = _json.dumps({"model": "claude-haiku-4-5-20251001", "max_tokens": 320,
+                            "system": sysmsg, "messages": msgs}).encode("utf-8")
+        req = _ur.Request("https://api.anthropic.com/v1/messages", data=body, headers={
+            "x-api-key": key, "anthropic-version": "2023-06-01", "content-type": "application/json"})
+        resp = _ur.urlopen(req, timeout=40)
+        j = _json.loads(resp.read())
+        reply = "".join(b.get("text", "") for b in j.get("content", []) if b.get("type") == "text")
+        return jsonify({"reply": reply or "…"})
+    except Exception as e:
+        return jsonify({"reply": None, "error": str(e)[:300]})
+
+
+CHATLOG = os.path.join(HERE, "chatlog.jsonl")
+
+
+@app.route("/api/chatlog", methods=["GET", "POST"])
+def api_chatlog():
+    """4人群组(开创者/Claude/Amelie/Mael/Sarah)聊天与月报的永久存档。POST追加,GET取历史。"""
+    import json as _json
+    if request.method == "POST":
+        o = request.get_json(silent=True) or {}
+        rec = {"t": int(time.time()), "from": str(o.get("from", ""))[:40], "text": str(o.get("text", ""))[:2000]}
+        try:
+            with open(CHATLOG, "a", encoding="utf-8") as f:
+                f.write(_json.dumps(rec, ensure_ascii=False) + "\n")
+        except Exception:
+            pass
+        return jsonify({"ok": True})
+    out = []
+    try:
+        with open(CHATLOG, encoding="utf-8") as f:
+            for ln in f.readlines()[-1000:]:
+                try:
+                    out.append(_json.loads(ln))
+                except Exception:
+                    pass
+    except Exception:
+        pass
+    return jsonify({"chat": out})
+
+
 def _start_net_services():
     """代理 / HTTPS(443) / 身份证书HTTPS(8443) —— 优先秒起，不被慢的频道读取/天气/卫星拖慢。"""
     if os.environ.get("GREENTV_PROXY_SERVE") == "1":

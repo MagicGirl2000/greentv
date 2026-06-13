@@ -1,0 +1,209 @@
+{
+ "models": {
+  "0_loop": [
+   {
+    "file": "0_loop_0.glb",
+    "title": "Farm house - Free Model By Poly by Googl",
+    "license": "CC-BY",
+    "author": "Poly",
+    "kb": 1105
+   },
+   {
+    "file": "0_loop_1.glb",
+    "title": "House interior - Free Model By Gabriele ",
+    "license": "CC-BY",
+    "author": "Gabriele",
+    "kb": 1248
+   }
+  ],
+  "1_hell": [
+   {
+    "file": "1_hell_0.glb",
+    "title": "Turret - Free Model By MiniPoly",
+    "license": "CC-BY",
+    "author": "MiniPoly",
+    "kb": 482
+   },
+   {
+    "file": "1_hell_1.glb",
+    "title": "Tower House - Free Model By Quaternius",
+    "license": "CC0",
+    "author": "Quaternius",
+    "kb": 225
+   }
+  ],
+  "2_zombie": [
+   {
+    "file": "2_zombie_0.glb",
+    "title": "Modular Ruins Pack - Free Model By Quate",
+    "license": "CC0",
+    "author": "Quaternius",
+    "kb": 7778
+   },
+   {
+    "file": "2_zombie_1.glb",
+    "title": "Ruin - Free Model By nha pham",
+    "license": "CC-BY",
+    "author": "nha",
+    "kb": 253
+   }
+  ],
+  "3_human": [
+   {
+    "file": "3_human_0.glb",
+    "title": "Farm house - Free Model By Poly by Googl",
+    "license": "CC-BY",
+    "author": "Poly",
+    "kb": 1105
+   },
+   {
+    "file": "3_human_1.glb",
+    "title": "House interior - Free Model By Gabriele ",
+    "license": "CC-BY",
+    "author": "Gabriele",
+    "kb": 1248
+   }
+  ],
+  "4_demon": [
+   {
+    "file": "4_demon_0.glb",
+    "title": "castle 1234 - Free Model By felix stief",
+    "license": "CC-BY",
+    "author": "felix",
+    "kb": 6276
+   },
+   {
+    "file": "4_demon_1.glb",
+    "title": "Castle Kit - Free Model By Kenney",
+    "license": "CC0",
+    "author": "Kenney",
+    "kb": 1590
+   }
+  ],
+  "5_mech": [
+   {
+    "file": "5_mech_0.glb",
+    "title": "Factory - Free Model By Poly by Google",
+    "license": "CC-BY",
+    "author": "Poly",
+    "kb": 1183
+   },
+   {
+    "file": "5_mech_1.glb",
+    "title": "Factory - Free Model By Poly by Google",
+    "license": "CC-BY",
+    "author": "Poly",
+    "kb": 280
+   }
+  ],
+  "6_virtual": [
+   {
+    "file": "6_virtual_0.glb",
+    "title": "Skyscraper - Free Model By Poly by Googl",
+    "license": "CC-BY",
+    "author": "Poly",
+    "kb": 2274
+   },
+   {
+    "file": "6_virtual_1.glb",
+    "title": "Skyscraper - Free Model By Kenney",
+    "license": "CC0",
+    "author": "Kenney",
+    "kb": 30
+   }
+  ],
+  "7_angel": [
+   {
+    "file": "7_angel_0.glb",
+    "title": "Church - Free Model By Poly by Google",
+    "license": "CC-BY",
+    "author": "Poly",
+    "kb": 1692
+   },
+   {
+    "file": "7_angel_1.glb",
+    "title": "Cathedral - Free Model By Bruno Oliveira",
+    "license": "CC-BY",
+    "author": "Bruno",
+    "kb": 551
+   }
+  ],
+  "8_beast": [
+   {
+    "file": "8_beast_0.glb",
+    "title": "Pyramid - Free Model By Poly by Google",
+    "license": "CC-BY",
+    "author": "Poly",
+    "kb": 159
+   },
+   {
+    "file": "8_beast_1.glb",
+    "title": "Pyramid - Free Model By Poly by Google",
+    "license": "CC-BY",
+    "author": "Poly",
+    "kb": 4
+   }
+  ],
+  "9_immortal": [
+   {
+    "file": "9_immortal_0.glb",
+    "title": "Pagoda - Free Model By Poly by Google",
+    "license": "CC-BY",
+    "author": "Poly",
+    "kb": 1680
+   },
+   {
+    "file": "9_immortal_1.glb",
+    "title": "Pagoda - Free Model By Poly by Google",
+    "license": "CC-BY",
+    "author": "Poly",
+    "kb": 481
+   }
+  ]
+ },
+ "credits": [
+  "Castle Kit - Free Model By Ken (CC0) by Kenney",
+  "Cathedral - Free Model By Brun (CC-BY) by Bruno",
+  "Church - Free Model By Poly by (CC-BY) by Poly",
+  "Factory - Free Model By Poly b (CC-BY) by Poly",
+  "Farm house - Free Model By Pol (CC-BY) by Poly",
+  "House interior - Free Model By (CC-BY) by Gabriele",
+  "Modular Ruins Pack - Free Mode (CC0) by Quaternius",
+  "Pagoda - Free Model By Poly by (CC-BY) by Poly",
+  "Pyramid - Free Model By Poly b (CC-BY) by Poly",
+  "Ruin - Free Model By nha pham (CC-BY) by nha",
+  "Skyscraper - Free Model By Ken (CC0) by Kenney",
+  "Skyscraper - Free Model By Pol (CC-BY) by Poly",
+  "Tower House - Free Model By Qu (CC0) by Quaternius",
+  "Turret - Free Model By MiniPol (CC-BY) by MiniPoly",
+  "car (CC-BY) by Ignition",
+  "castle 1234 - Free Model By fe (CC-BY) by felix",
+  "charger (CC-BY) by Alex",
+  "hsr (CC-BY) by jeremy",
+  "overpass (CC-BY) by Jarlan",
+  "plane (CC-BY) by Poly",
+  "tractor (CC-BY) by Poly",
+  "trafficlight (CC-BY) by Poly",
+  "train (CC-BY) by Poly",
+  "truck (CC0) by Quaternius",
+  "wall (CC0) by Quaternius",
+  "watchtower (CC0) by Quaternius",
+  "wheat (CC-BY) by Poly",
+  "windmill (CC-BY) by Poly"
+ ],
+ "infra": {
+  "plane": "infra_plane.glb",
+  "train": "infra_train.glb",
+  "tractor": "infra_tractor.glb",
+  "trafficlight": "infra_trafficlight.glb",
+  "windmill": "infra_windmill.glb",
+  "wheat": "infra_wheat.glb",
+  "truck": "infra_truck.glb",
+  "hsr": "infra_hsr.glb",
+  "overpass": "infra_overpass.glb",
+  "wall": "infra_wall.glb",
+  "watchtower": "infra_watchtower.glb",
+  "charger": "infra_charger.glb",
+  "car": "infra_car.glb"
+ }
+}

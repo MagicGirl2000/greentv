@@ -1,0 +1,14 @@
+{
+  "name": "绿太阳维度世界 GreenSun",
+  "short_name": "绿太阳",
+  "description": "维度世界·三区城市模拟 + 与三魔女群聊",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0a1a2a",
+  "theme_color": "#1f6f3f",
+  "icons": [
+    { "src": "/logo_sz.ico", "sizes": "64x64", "type": "image/x-icon" }
+  ]
+}
