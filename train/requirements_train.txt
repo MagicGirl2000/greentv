@@ -1,0 +1,11 @@
+# 绿太阳·本地微调训练依赖 (Python 3.10/3.11 推荐；3.13 轮子未必齐)
+# torch 走 CUDA 版，单独装：
+#   pip install torch --index-url https://download.pytorch.org/whl/cu121
+torch
+transformers>=4.44
+peft>=0.12
+bitsandbytes>=0.43        # Windows 已有官方轮子；CUDA 版本需与 torch 对齐
+datasets>=2.20
+accelerate>=0.33
+safetensors
+sentencepiece

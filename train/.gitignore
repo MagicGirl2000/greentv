@@ -1,0 +1,10 @@
+﻿out/
+dataset.jsonl
+status.json
+control.json
+loop.log
+control_daemon.log
+control_daemon.log.err
+mailbox_store.json
+__pycache__/
+*.err
