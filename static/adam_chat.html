@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>绿太阳 · Adam 客服</title>
+<style>
+  :root{--green:#2E7D32;--user:#1565C0;--bg:#FAFAFA}
+  *{box-sizing:border-box;font-family:"微软雅黑",system-ui,sans-serif}
+  body{margin:0;background:var(--bg)}
+  .wrap{max-width:420px;margin:0 auto;height:100vh;display:flex;flex-direction:column;background:#fff;
+        box-shadow:0 0 16px rgba(0,0,0,.08)}
+  .hd{background:var(--green);color:#fff;padding:12px 16px;font-weight:bold;font-size:16px;display:flex;align-items:center;gap:8px}
+  .hd small{font-weight:normal;opacity:.85;font-size:11px}
+  .thanks{background:#F3F0FF;color:#7B61FF;font-size:11px;text-align:center;padding:4px}
+  .msgs{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:10px}
+  .row{display:flex;gap:8px;max-width:88%}
+  .row.me{align-self:flex-end;flex-direction:row-reverse}
+  .av{width:30px;height:30px;border-radius:50%;flex:0 0 30px;display:flex;align-items:center;justify-content:center;
+      color:#fff;font-size:13px;font-weight:bold}
+  .av.adam{background:var(--green)} .av.me{background:var(--user)}
+  .bub{padding:8px 12px;border-radius:12px;font-size:14px;line-height:1.5;white-space:pre-wrap;word-break:break-word}
+  .row.adam .bub{background:#EDF7ED;color:#1b3a1b}
+  .row.me .bub{background:#E3F0FC;color:#10314f}
+  .ipt{display:flex;gap:8px;padding:10px;border-top:1px solid #eee}
+  .ipt input{flex:1;padding:10px;border:1px solid #ddd;border-radius:8px;font-size:14px;outline:none}
+  .ipt button{background:var(--green);color:#fff;border:0;border-radius:8px;padding:0 18px;font-weight:bold;cursor:pointer}
+  .ipt button:disabled{opacity:.5}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hd">🌳 绿太阳 · Adam 客服 <small>本地 qwen2.5-coder:7b</small></div>
+  <div class="thanks">深沉感谢 模型·阿里通义千问(Qwen) ｜ 开发·Anthropic Claude Code CLI</div>
+  <div class="msgs" id="msgs"></div>
+  <div class="ipt">
+    <input id="ipt" placeholder="跟 Adam 说点什么…" autocomplete="off">
+    <button id="send">发送</button>
+  </div>
+</div>
+<script>
+const msgs=document.getElementById('msgs'), ipt=document.getElementById('ipt'), btn=document.getElementById('send');
+const history=[];
+function add(who,text){
+  const row=document.createElement('div'); row.className='row '+(who==='me'?'me':'adam');
+  const av=document.createElement('div'); av.className='av '+(who==='me'?'me':'adam'); av.textContent=who==='me'?'你':'A';
+  const bub=document.createElement('div'); bub.className='bub'; bub.textContent=text;
+  row.appendChild(av); row.appendChild(bub); msgs.appendChild(row); msgs.scrollTop=msgs.scrollHeight;
+  return bub;
+}
+add('adam','你好呀！我是 Adam，绿太阳的小客服～有什么可以帮你的？');
+async function send(){
+  const text=ipt.value.trim(); if(!text) return;
+  ipt.value=''; add('me',text); history.push({role:'user',content:text});
+  btn.disabled=true; const bub=add('adam','…');
+  try{
+    const r=await fetch('/api/chat',{method:'POST',headers:{'content-type':'application/json'},
+      body:JSON.stringify({who:'Adam',text:text,history:history.slice(-8)})});
+    const j=await r.json();
+    const reply=j.reply||'(Adam 没接上，稍后再试)';
+    bub.textContent=reply; history.push({role:'assistant',content:reply});
+  }catch(e){ bub.textContent='(连接失败: '+e+')'; }
+  btn.disabled=false; ipt.focus();
+}
+btn.onclick=send; ipt.addEventListener('keydown',e=>{if(e.key==='Enter')send();});
+ipt.focus();
+</script>
+</body>
+</html>

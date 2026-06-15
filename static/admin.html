@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>绿太阳 · 客服管理后台</title>
+<style>
+*{box-sizing:border-box;font-family:"微软雅黑",system-ui,sans-serif}
+body{margin:0;background:#FAFAFA;color:#222}
+.wrap{max-width:560px;margin:0 auto;min-height:100vh;background:#fff;box-shadow:0 0 16px rgba(0,0,0,.08)}
+.hd{background:#1565C0;color:#fff;padding:12px 16px;font-weight:bold;display:flex;justify-content:space-between;align-items:center}
+.hd small{font-weight:normal;opacity:.85;font-size:11px}
+.pad{padding:14px;display:flex;flex-direction:column;gap:10px}
+input,textarea{width:100%;padding:9px;border:1px solid #ddd;border-radius:8px;font-size:14px;outline:none}
+textarea{min-height:70px}
+button{background:#1565C0;color:#fff;border:0;border-radius:8px;padding:10px;font-weight:bold;cursor:pointer}
+button.green{background:#2E7D32}
+.t{border:1px solid #eee;border-radius:10px;padding:12px;margin-bottom:10px}
+.t .top{display:flex;justify-content:space-between;font-size:12px;color:#888}
+.t .q{margin:6px 0;font-size:14px;white-space:pre-wrap}
+.tag{display:inline-block;border-radius:6px;padding:1px 8px;font-size:12px;color:#fff;background:#F57C00}
+.tag.done{background:#2E7D32}
+.muted{color:#999;font-size:12px;text-align:center;padding:20px}
+</style></head>
+<body><div class="wrap">
+  <div class="hd"><span>🛡 绿太阳 · 客服管理后台</span><small id="who"></small></div>
+  <div class="pad" id="login">
+    <label>管理员登录</label>
+    <input id="user" placeholder="账号" value="Admin">
+    <input id="pwd" type="password" placeholder="密码">
+    <button id="loginBtn">登录</button>
+    <div id="loginMsg" class="muted"></div>
+  </div>
+  <div class="pad" id="panel" style="display:none">
+    <button class="green" id="refresh">🔄 刷新工单</button>
+    <div id="list"></div>
+  </div>
+</div>
+<script>
+const $=id=>document.getElementById(id); let TOKEN='';
+$('loginBtn').onclick=async()=>{
+  try{
+    const r=await fetch('/api/admin/login',{method:'POST',headers:{'content-type':'application/json'},
+      body:JSON.stringify({user:$('user').value,pwd:$('pwd').value})});
+    const j=await r.json();
+    if(j.ok){TOKEN=j.token;$('login').style.display='none';$('panel').style.display='flex';
+      $('who').textContent='已登录 · Admin';load();}
+    else $('loginMsg').textContent=j.msg||'登录失败';
+  }catch(e){$('loginMsg').textContent='连接失败：'+e;}
+};
+$('refresh').onclick=()=>load();
+async function load(){
+  const r=await fetch('/api/admin/tickets?token='+TOKEN); const j=await r.json();
+  if(!j.ok){$('list').innerHTML='<div class="muted">'+(j.msg||'加载失败')+'</div>';return;}
+  if(!j.tickets.length){$('list').innerHTML='<div class="muted">暂无工单 🍃</div>';return;}
+  $('list').innerHTML=j.tickets.map(t=>{
+    const done=t.replied!==0; const dt=new Date(t.created*1000).toLocaleString('zh-CN');
+    return '<div class="t"><div class="top"><span>'+t.id+' · '+t.name+'</span><span>'+dt+'</span></div>'+
+      '<span class="tag '+(done?'done':'')+'">'+t.status+'</span>'+
+      '<div class="q">问：'+esc(t.question)+'</div>'+
+      (done?('<div class="q" style="color:#2E7D32">已回复：'+esc(t.reply)+'</div>'):
+        ('<textarea id="r_'+t.id+'" placeholder="输入回复…"></textarea>'+
+         '<button class="green" onclick="reply(\''+t.id+'\')">提交回复</button>'))+'</div>';
+  }).join('');
+}
+function esc(s){return (s||'').replace(/[<>&]/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;'}[c]));}
+async function reply(id){
+  const v=$('r_'+id).value.trim(); if(!v)return;
+  const r=await fetch('/api/admin/reply',{method:'POST',headers:{'content-type':'application/json'},
+    body:JSON.stringify({token:TOKEN,id,reply:v})});
+  const j=await r.json(); if(j.ok)load(); else alert(j.msg||'回复失败');
+}
+</script></body></html>
