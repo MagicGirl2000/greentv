@@ -47,6 +47,7 @@ os.environ.setdefault("GREENTV_READ_CN", "1")         # 本机直读中国频道
 os.environ.setdefault("GREENTV_PROXY_SERVE", "1")     # 伦敦HTTP代理 :8782
 os.environ.setdefault("GREENTV_HTTPS", "1")           # HTTPS :8443 (cert.pem/key.pem)
 os.environ.setdefault("GREENTV_UK", "http://127.0.0.1:8781")
+os.environ.setdefault("GREENTV_HUB", "1")             # 挂载中枢:Adam客服中继 + 训练调试信道(:8780)
 PORT = int(os.environ.get("GREENTV_PORT", "8780"))
 
 

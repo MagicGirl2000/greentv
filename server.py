@@ -28,6 +28,14 @@ _NOWIN = 0x08000000 if os.name == "nt" else 0   # CREATE_NO_WINDOW：不弹 ffmp
 HERE = os.path.dirname(os.path.abspath(__file__))
 app = Flask(__name__, static_folder=os.path.join(HERE, "static"), static_url_path="")
 
+# 英国一体机：挂载中枢(Adam客服中继 + 训练调试信道)到主站 :8780
+if os.environ.get("GREENTV_HUB"):
+    try:
+        import hub_routes
+        hub_routes.register(app)
+    except Exception as _hub_e:
+        print("[hub] register failed:", _hub_e)
+
 CHANS = ch_cfg.all_channels()
 # 只跑央视(国际频道暂时停盘)：GREENTV_CN_ONLY=1(默认)。要全量设为 0。
 if os.environ.get("GREENTV_CN_ONLY", "1") == "1":
@@ -731,6 +739,14 @@ def api_chat():
         if role in ("user", "assistant"):
             msgs.append({"role": role, "content": str(m.get("content", ""))[:500]})
     msgs.append({"role": "user", "content": text or "你好"})
+    # 英国一体机(中枢)：把提问交给深圳一体机的小七(经 :8780 加密信道，深圳出站穿NAT)
+    if os.environ.get("GREENTV_HUB"):
+        try:
+            import hub_routes
+            reply = hub_routes.enqueue_adam([{"role": "system", "content": sysmsg}] + msgs)
+            return jsonify({"reply": reply or "(小七暂时不在线，稍后再试～)", "via": "sz-adam"})
+        except Exception as e:
+            return jsonify({"reply": None, "error": "hub: " + str(e)[:200]})
     # ① 本地 Ollama Code AI 优先（离线·免费·私密）：配 ollama_model.txt 或 GREENTV_OLLAMA=模型名
     ollama_model = os.environ.get("GREENTV_OLLAMA", "")
     if not ollama_model:
@@ -747,7 +763,13 @@ def api_chat():
             o_req = _ur.Request(o_url, data=o_body, headers={"content-type": "application/json"})
             oj = _json.loads(_ur.urlopen(o_req, timeout=120).read())
             reply = (oj.get("message") or {}).get("content", "").strip()
-            return jsonify({"reply": reply or "…", "via": "ollama"})
+            # 本地 Ollama：离线免费(cost=0)，但仍按 Anthropic 口径报告 token 用量
+            _pi = int(oj.get("prompt_eval_count", 0)); _po = int(oj.get("eval_count", 0))
+            usage = {"model": ollama_model, "via": "ollama",
+                     "input_tokens": _pi, "output_tokens": _po,
+                     "cache_write_tokens": 0, "cache_read_tokens": 0,
+                     "total_input_tokens": _pi, "cost_usd": 0.0}
+            return jsonify({"reply": reply or "…", "via": "ollama", "usage": usage})
         except Exception as e:
             return jsonify({"reply": None, "error": "ollama: " + str(e)[:280]})
     if not key:
@@ -760,7 +782,18 @@ def api_chat():
         resp = _ur.urlopen(req, timeout=40)
         j = _json.loads(resp.read())
         reply = "".join(b.get("text", "") for b in j.get("content", []) if b.get("type") == "text")
-        return jsonify({"reply": reply or "…"})
+        # —— 按 Anthropic 官方计费修正 token 消耗概念 ——
+        # Claude Haiku 4.5 单价(美元/百万token)：输入1.00 / 输出5.00 / 缓存读0.10 / 缓存写(5m)1.25
+        # 总输入 = input_tokens(未缓存) + cache_creation + cache_read，三者分别按各自单价计费
+        u = j.get("usage") or {}
+        ti = int(u.get("input_tokens", 0)); to = int(u.get("output_tokens", 0))
+        tcw = int(u.get("cache_creation_input_tokens", 0)); tcr = int(u.get("cache_read_input_tokens", 0))
+        cost = (ti * 1.00 + to * 5.00 + tcw * 1.25 + tcr * 0.10) / 1_000_000  # 美元
+        usage = {"model": "claude-haiku-4-5", "via": "anthropic",
+                 "input_tokens": ti, "output_tokens": to,
+                 "cache_write_tokens": tcw, "cache_read_tokens": tcr,
+                 "total_input_tokens": ti + tcw + tcr, "cost_usd": round(cost, 6)}
+        return jsonify({"reply": reply or "…", "usage": usage})
     except Exception as e:
         return jsonify({"reply": None, "error": str(e)[:300]})
 

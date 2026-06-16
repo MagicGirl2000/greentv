@@ -132,7 +132,56 @@ def pull():
     return Response(link.seal(payload), mimetype="text/plain")
 
 
+# —— 接收深圳推送的代码包时，绝不覆盖这些（英国本地密钥/证书/数据/运行时）——
+PROTECT_NAMES = {"link_key.txt", "proxy_token.txt", "users.json", "users.json.bak",
+                 "smtp_config.json", "chatlog.jsonl", "portraits.jsonl", "feat_db.npz", "zip_pwd.txt"}
+PROTECT_EXT = {".pem", ".db", ".db-wal", ".db-shm", ".log"}
+
+
+def unpack_into_src(data):
+    """解压代码包进 SRC_DIR，跳过英国本地密钥/证书/数据(不覆盖)；防 zip-slip。返回(写入数, 跳过列表)。"""
+    written, skipped = 0, []
+    root = os.path.normpath(SRC_DIR)
+    with zipfile.ZipFile(io.BytesIO(data)) as z:
+        for info in z.infolist():
+            if info.is_dir():
+                continue
+            base = os.path.basename(info.filename)
+            if base in PROTECT_NAMES or os.path.splitext(base)[1].lower() in PROTECT_EXT:
+                skipped.append(info.filename); continue
+            dest = os.path.normpath(os.path.join(root, info.filename))
+            if dest != root and not dest.startswith(root + os.sep):
+                skipped.append("(unsafe)" + info.filename); continue        # 防越界
+            os.makedirs(os.path.dirname(dest), exist_ok=True)
+            with z.open(info) as s, open(dest, "wb") as o:
+                o.write(s.read())
+            written += 1
+    return written, skipped
+
+
+@app.route("/uksrc/recv", methods=["POST"])
+def recv():
+    """接收深圳推来的代码包(link加密)，校验SHA-256→解压进英国greentv，保留本地密钥/证书/数据。"""
+    try:
+        obj = link.unseal(request.get_data(as_text=True))
+    except link.InvalidToken:
+        return Response("key mismatch", status=403)
+    except Exception as e:
+        return Response("bad payload: %s" % e, status=400)
+    try:
+        data = base64.b64decode(obj["zip_b64"])
+    except Exception as e:
+        return Response("bad zip: %s" % e, status=400)
+    if hashlib.sha256(data).hexdigest() != obj.get("sha256"):
+        return Response(link.seal({"ok": False, "err": "sha256 mismatch"}), mimetype="text/plain")
+    written, skipped = unpack_into_src(data)
+    print("收到深圳代码包: 写入 %d 文件，保留 %d 个本地敏感文件 → %s" % (written, len(skipped), SRC_DIR))
+    return Response(link.seal({"ok": True, "written": written, "skipped": len(skipped),
+                              "protected": skipped[:20], "dest": SRC_DIR}), mimetype="text/plain")
+
+
 if __name__ == "__main__":
-    print("🟢 英国源码打包服务  :%d  源目录=%s  口令指纹=%s  加密:%s"
+    print("🟢 英国源码打包/接收服务  :%d  源目录=%s  口令指纹=%s  加密:%s"
           % (PORT, SRC_DIR, link.key_fingerprint(), link.encryption_on()))
+    print("   /uksrc/pull = 回传英国源码到深圳   /uksrc/recv = 接收深圳推送的代码更新")
     app.run(host="0.0.0.0", port=PORT, threaded=True)

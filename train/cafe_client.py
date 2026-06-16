@@ -29,7 +29,7 @@ _H = os.path.dirname(os.path.abspath(__file__))
 sys.path[:0] = [_H, os.path.dirname(_H)]   # link.py 在本目录或父目录均可
 import link
 
-TM = os.environ.get("GREENTV_TM_URL", "http://8.208.127.130:8795").rstrip("/")
+TM = os.environ.get("GREENTV_TM_URL", "http://8.208.127.130:8780").rstrip("/")  # 训练信道焊进一体机主站:8780
 
 
 def post(path, obj, timeout=20):
@@ -63,8 +63,7 @@ def main():
     args = ap.parse_args()
 
     if args.action == "ping":
-        print(post("/tm/ping", {}) if False else
-              link.unseal(urllib.request.urlopen(TM + "/tm/ping", timeout=15).read().decode("ascii")))
+        print(link.unseal(urllib.request.urlopen(TM + "/hub/ping", timeout=15).read().decode("ascii")))
         return
     if args.action == "status":
         show_status(); return

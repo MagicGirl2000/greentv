@@ -47,6 +47,7 @@ os.environ.setdefault("GREENTV_ROTATE", "1")         # 轮转采样(几百路也
 os.environ.setdefault("GREENTV_VIDEO", "1")          # 视频+音频联合分析(本机显卡解码)
 os.environ.setdefault("GREENTV_TICK_CN", "19")       # 19秒采样
 os.environ.setdefault("GREENTV_TICK_INTL", "19")
+os.environ.setdefault("GREENTV_HUB_URL", "http://8.208.127.130:8780")  # 英国中枢(Adam客服+训练信道)
 # 国际源经【伦敦HTTP代理(英国IP)】下载，绕开对华地域限制/慢路由；中国源直连。伦敦端需运行 london_proxy。
 # 令牌(防开放代理滥用)放 gitignored 的 proxy_token.txt，不进公开仓库；构成 http://gt:<令牌>@伦敦:8782。
 def _proxy_url():
@@ -102,6 +103,11 @@ def start_web():
 def main():
     threading.Thread(target=start_web, daemon=True).start()
     time.sleep(1.0)                                   # 让网页服务先起，客户端可读本机 /api/channels
+    try:
+        import sz_agent                                # 深圳后台代理：Adam客服 + 训练调试，出站轮询英国中枢
+        sz_agent.start()
+    except Exception as _ae:
+        print("[agent] start failed:", _ae)
     import shenzhen_gui
     shenzhen_gui.main()                               # 主线程跑 tkinter GUI（阻塞）
 
